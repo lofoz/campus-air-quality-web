@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>NCKU</title>
+		<link rel="stylesheet" href="css/styles.css" />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	
+	<body onload="get_data()">
+		<!-- head -->
+		<div id="header">
+			<div class="logo">
+				<a href="#">
+					<img src="img/ncku-logo.jpg" />
+				</a>
+			</div>
+			
+			<div class="search">
+				<form>
+					<input type="text" value="SERACH" class="text" />
+					<input type="submit" class="bt" value="" />
+				</form>
+			</div>
+		</div>
+		
+		<!-- nav -->
+		<div id="nav">
+			<ul>
+				<li class="first"> <a href="#">簡介</a> </li>
+				<li> <a href="#">Map</a> </li>
+				<li> <a href="#">運動路徑</a> </li>
+				<!-- <li class="last"> <a href="#"></a> </li> -->
+			</ul>
+		</div>
+		
+		<!-- display -->
+		<div id="display">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.6786465371774!2d120.21732611409277!3d22.998841584965103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e76ed290820d3%3A0xe0ee028be207a19e!2z5ZyL56uL5oiQ5Yqf5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1583101290500!5m2!1szh-TW!2stw" width="999" height="464" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+		</div>
+		
+		<!-- sensor -->
+		<div id="sensor">
+			<div class="sensor-1">
+				<div class="section1">
+					<h3>Sensor</h3>
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Campus No.</th>
+								<th scope="col">PM2.5</th>
+								<th scope="col">Temperature</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="table-muted">
+								<th scope="row">0</th>
+								<td><span id="0pm"></span></td>
+								<td><span id="0temp"></span></td>
+							</tr>
+							<tr class="table-primary">
+								<th scope="row">1</th>
+								<td><span id="1pm"></span></td>
+								<td><span id="1temp"></span></td>
+							</tr>
+							<tr class="table-success">
+								<th scope="row">2</th>
+								<td><span id="2pm"></span></td>
+								<td><span id="2temp"></span></td>
+							</tr>
+							<tr class="table-info">
+								<th scope="row">3</th>
+								<td><span id="3pm"></span></td>
+								<td><span id="3temp"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="section2">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Campus No.</th>
+								<th scope="col">PM2.5</th>
+								<th scope="col">Temperature</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="table-warning">
+								<th scope="row">4</th>
+								<td><span id="4pm"></span></td>
+								<td><span id="4temp"></span></td>
+							</tr>
+							<tr class="table-danger">
+								<th scope="row">5</th>
+								<td><span id="5pm"></span></td>
+								<td><span id="5temp"></span></td>
+							</tr>
+							<tr class="table-secondary">
+								<th scope="row">6</th>
+								<td><span id="6pm"></span></td>
+								<td><span id="6temp"></span></td>
+							</tr>
+							<tr class="table-light">
+								<th scope="row">7</th>
+								<td><span id="7pm"></span></td>
+								<td><span id="7temp"></span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- <div class="section3">
+					<h3>test</h3>
+					<p>test</p>
+				</div> -->
+			</div>
+			
+			<!-- <div class="sensor-2">
+				<h3>test</h3>
+				<div class="content">
+					<div class="smallBox">
+						<a href="#">test</a>
+					</div>
+					<div class="smallBox">
+						<a href="#">test</a>
+					</div>
+					<div class="smallBox">
+						<a href="#">test</a>
+					</div>
+					<div class="smallBox" style="margin-right: 0;">
+						<a href="#">test</a>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		
+		<!-- 底部 -->
+		<div id="footer">
+			<div class="section1">
+				<!-- <div class="view1">
+					<h3>test</h3>
+					<ul>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+					</ul>
+					<ul style="margin: 0 70px;">
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+					</ul>
+					<ul>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+					</ul>
+				</div>
+				<div class="view2" style="margin: 0 49px;">
+					<h3>test</h3>
+					<ul style="margin-left: 10px;">
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+						<li> <a href="#">test</a> </li>
+					</ul>
+				</div>
+				<div class="view3">
+					<h3>test</h3>
+				</div> -->
+			</div>
+			
+			<div class="section2">
+				<!-- <div class="view1">
+					<a href="#">test</a> <span>|</span>
+					<a href="#">test</a> <span>|</span>
+					<a href="#">test</a> <span>|</span>
+					<a href="#">test</a>
+				</div> -->
+				
+				<div class="view2">
+					COPYRIGHT&nbsp;&copy;&nbsp;GitHub-lofoz
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script language="JavaScript" crossorigin="anonymous">
+    function sleep(ms){
+
+    var starttime= new Date().getTime();
+
+    do{
+
+    }while((new Date().getTime()-starttime)<ms)
+
+    }
+
+    function get_campus_data(i){
+      
+  　	var xhr = new XMLHttpRequest;
+      var url ='http://140.116.82.93:6800/campus/'+String(i);
+      xhr.responseType = 'json';
+      xhr.onreadystatechange = ()=>{
+      if(xhr.readyState === XMLHttpRequest.DONE){
+          //document.write(JSON.stringify(xhr.response));
+          //document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
+          var pm_string = String(i)+"pm";
+          var temp_string =String(i)+"temp";
+          
+          document.getElementById(pm_string).innerHTML=JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
+          document.getElementById(temp_string).innerHTML=JSON.stringify(xhr.response["avg_temp"]["temp"]);
+      }
+      };
+      xhr.open('GET',url);
+      xhr.send();
+ 
+    }
+    function get_data(){
+      for(var i =0;i<8;i++){
+        get_campus_data(i);
+      }
+      
+      
+
+    }
+    </script>
