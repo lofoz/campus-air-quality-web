@@ -30,16 +30,14 @@
 		<div id="nav">
 			<ul>
 				<li class="first"> <a href="#">簡介</a> </li>
-				<li> <a href="#">Map</a> </li>
+				<li onclick="resetMap()"> <a href="#">Map</a> </li>
 				<li> <a href="#">運動路徑</a> </li>
-				<!-- <li class="last"> <a href="#"></a> </li> -->
+				<li class="last" onclick="setMap_my()"> <span id="my_pm"></span> </li>
 			</ul>
 		</div>
 		
 		<!-- display -->
-		<div id="display">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.6786465371774!2d120.21732611409277!3d22.998841584965103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e76ed290820d3%3A0xe0ee028be207a19e!2z5ZyL56uL5oiQ5Yqf5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1583101290500!5m2!1szh-TW!2stw" width="999" height="464" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-		</div>
+		<div id="display"></div>
 		
 		<!-- sensor -->
 		<div id="sensor">
@@ -55,22 +53,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="table-muted">
+							<tr class="table-muted" onclick="setMap(0)">
 								<th scope="row">0</th>
 								<td><span id="0pm"></span></td>
 								<td><span id="0temp"></span></td>
 							</tr>
-							<tr class="table-primary">
+							<tr class="table-primary" onclick="setMap(1)">
 								<th scope="row">1</th>
 								<td><span id="1pm"></span></td>
 								<td><span id="1temp"></span></td>
 							</tr>
-							<tr class="table-success">
+							<tr class="table-success" onclick="setMap(2)">
 								<th scope="row">2</th>
 								<td><span id="2pm"></span></td>
 								<td><span id="2temp"></span></td>
 							</tr>
-							<tr class="table-info">
+							<tr class="table-info" onclick="setMap(3)">
 								<th scope="row">3</th>
 								<td><span id="3pm"></span></td>
 								<td><span id="3temp"></span></td>
@@ -88,22 +86,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="table-warning">
+							<tr class="table-warning" onclick="setMap(4)">
 								<th scope="row">4</th>
 								<td><span id="4pm"></span></td>
 								<td><span id="4temp"></span></td>
 							</tr>
-							<tr class="table-danger">
+							<tr class="table-danger" onclick="setMap(5)">
 								<th scope="row">5</th>
 								<td><span id="5pm"></span></td>
 								<td><span id="5temp"></span></td>
 							</tr>
-							<tr class="table-secondary">
+							<tr class="table-secondary" onclick="setMap(6)">
 								<th scope="row">6</th>
 								<td><span id="6pm"></span></td>
 								<td><span id="6temp"></span></td>
 							</tr>
-							<tr class="table-light">
+							<tr class="table-light" onclick="setMap(7)">
 								<th scope="row">7</th>
 								<td><span id="7pm"></span></td>
 								<td><span id="7temp"></span></td>
@@ -192,9 +190,12 @@
 </html>
 
 <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script language="JavaScript" crossorigin="anonymous">
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script>
+<script language="JavaScript" crossorigin="anonymous">
+	var campus_data = [];
+	var min_p = 0;
     function sleep(ms){
 
     var starttime= new Date().getTime();
@@ -204,33 +205,213 @@
     }while((new Date().getTime()-starttime)<ms)
 
     }
-
-    function get_campus_data(i){
-      
-  　	var xhr = new XMLHttpRequest;
-      var url ='http://140.116.82.93:6800/campus/'+String(i);
-      xhr.responseType = 'json';
-      xhr.onreadystatechange = ()=>{
-      if(xhr.readyState === XMLHttpRequest.DONE){
-          //document.write(JSON.stringify(xhr.response));
-          //document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
-          var pm_string = String(i)+"pm";
-          var temp_string =String(i)+"temp";
-          
-          document.getElementById(pm_string).innerHTML=JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
-          document.getElementById(temp_string).innerHTML=JSON.stringify(xhr.response["avg_temp"]["temp"]);
-      }
-      };
-      xhr.open('GET',url);
-      xhr.send();
- 
-    }
-    function get_data(){
-      for(var i =0;i<8;i++){
-        get_campus_data(i);
-      }
-      
-      
-
-    }
+	
+	function get_campus_data(i)
+	{
+		var xhr = new XMLHttpRequest;
+		var url ='http://140.116.82.93:6800/campus/'+String(i);
+		var data = {};
+		xhr.responseType = 'json';
+		xhr.onreadystatechange = ()=>{
+			if(xhr.readyState === XMLHttpRequest.DONE)
+			{
+				//document.write(JSON.stringify(xhr.response));
+				//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
+				var pm_string = String(i)+"pm";
+				var temp_string =String(i)+"temp";
+				data = {};
+				data['pm25'] = JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
+				data['temp'] = JSON.stringify(xhr.response["avg_temp"]["temp"]);
+				document.getElementById(pm_string).innerHTML=data.pm25;
+				document.getElementById(temp_string).innerHTML=data.temp;
+			}
+		};
+		xhr.open('GET',url);
+		xhr.send();
+	}
+	
+	// 算sensor 和 user 距離 ，以及取得GPS data
+	var min_distance;
+	function geoFindMe()
+	{
+		var output = document.getElementById("my_pm");
+		var sensor_lng = [120.216805, 120.2199081, 120.21920399999999, 120.21641, 120.215185, 120.220804, 120.218550, 120.223672];
+		var sensor_lat = [23.003028, 23.0018649, 22.993629799999997, 22.997920, 23.000781, 22.996768, 22.998106, 22.997850];
+		var my_lat, my_lng;
+		if (!navigator.geolocation)
+		{
+			output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+			return;
+		}
+		function success(position)
+		{
+			var distance = [];
+			var min;
+			// var meg = "目前位置<br>最近sensor：";
+			my_lat = position.coords.latitude;
+			my_lng = position.coords.longitude;
+			for(var i =0; i<8; i++)
+			{
+				distance[i] = distanceByLnglat(sensor_lng[i], sensor_lat[i], my_lng, my_lat);
+			}
+			min = distance[0];
+			for(var i = 1; i < 8; i++)
+			{
+				if(distance[i] < min)
+				{
+					min = distance[i];
+					min_p = i;
+				}
+			}
+			// output.innerHTML = min_p;
+			//document.write(JSON.stringify(xhr.response));
+			//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
+			// meg = meg + min_p +"<br>PM2.5："+campus_data[min_p].pm25;
+			// document.getElementById("my_pm").innerHTML=meg;
+			get_my_campus_data(min_p);
+		// // var img = new Image();
+		// mg.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+		// output.appendChild(img);
+		};
+		function error()
+		{
+			output.innerHTML = "Unable to retrieve your location";
+		};
+		output.innerHTML = "<p>Locating…</p>";
+		navigator.geolocation.getCurrentPosition(success, error);
+	}
+	
+	// 算user 和 sensor 之間的距離
+	function distanceByLnglat(lng1,lat1,lng2,lat2)
+	{
+		var radLat1 = Rad(lat1);
+		var radLat2 = Rad(lat2);
+		var a = radLat1 - radLat2;
+		var b = Rad(lng1) - Rad(lng2);
+		var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+		s = s * 6378137.0;// 取WGS84標準參考橢球中的地球長半徑(單位:m)
+		s = Math.round(s * 10000) / 10000;
+		return s;
+		// //下面為兩點間空間距離（非球面體）
+		// var value= Math.pow(Math.pow(lng1-lng2,2)+Math.pow(lat1-lat2,2),1/2);
+		// alert(value);
+	}
+	function Rad(d)
+	{
+		return d * Math.PI / 180.0;
+	}
+	function get_my_campus_data(i)
+	{
+	    var xhr = new XMLHttpRequest;
+		var url ='http://140.116.82.93:6800/campus/'+String(i);
+		var meg = "目前位置<br>最近sensor："+i;
+		xhr.responseType = 'json';
+		xhr.onreadystatechange = ()=>
+		{
+			if(xhr.readyState === XMLHttpRequest.DONE)
+			{
+				//document.write(JSON.stringify(xhr.response));
+				//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
+				meg = meg+"<br>PM2.5："+JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
+				document.getElementById("my_pm").innerHTML=meg;
+			}
+		};
+		xhr.open('GET',url);
+		xhr.send();
+	}
+	
+	
+	// 顯示 google map 在display 上
+	var map;
+	var markers = [];
+	var infoWindows = [];
+	var position = [
+		{label:'0',lat:23.003028,lng:120.216805,title:"生命科學系館"},
+		{label:'1',lat:23.0018649,lng:120.2199081,title:"MRI中心"},
+		{label:'2',lat:22.993629799999997,lng:120.21920399999999,title:"勝利一舍"},
+		{label:'3',lat:22.997920,lng:120.21641,title:"學生活動中心(一)"},
+		{label:'4',lat:23.000781,lng:120.215185,title:"建築學系館"},
+		{label:'5',lat:22.996768,lng:120.220804,title:"資訊工程學系館"},
+		{label:'6',lat:22.998106,lng:120.218550,title:"計算機與網路中心"},
+		{label:'7',lat:22.997850,lng:120.223672,title:"儀器設備大樓"}
+	];
+	var info_config = [
+		'<h3>生命科學系館</h3>'+
+		'<img src="https://lh5.googleusercontent.com/p/AF1QipMDP24pxMChUca398nsNrwKNzHjCYtxBrWd7zpT=w408-h306-k-no" width = "200px">',
+		'<h3>MRI中心</h3>'+
+		'<img src="http://fmri.ncku.edu.tw/tw/themes/default/images/about2_front.png" width = "200px">',
+		'<h3>勝利一舍</h3>'+
+		'<img src="https://follaw.tw/wp-content/uploads/2019/11/%E5%8B%9D%E5%88%A9%E4%B8%80%E8%88%8D.jpg" width = "200px">',
+		'<h3>學生活動中心(一)</h3>'+
+		'<img src="https://lh5.googleusercontent.com/p/AF1QipODRtUBOvqKhoNqKJx-Td1Ycl8VNO5vjkRaRIKa=w408-h306-k-no" width = "200px">',
+		'<h3>建築學系館</h3>'+
+		'<img src="https://lh5.googleusercontent.com/p/AF1QipNofp6pF9NyvRUhVR_w-aJlhEuPasQcQSWHTU1q=w408-h306-k-no" width = "200px">',
+		'<h3>資訊工程學系館</h3>'+
+		'<img src="https://lh5.googleusercontent.com/p/AF1QipMCX_rrJ80CAl9OEVYGK8hkd_wKunbaPCk9hSs7=w408-h306-k-no" width = "200px">',
+		'<h3>計算機與網路中心</h3>'+
+		'<img src="https://lh5.googleusercontent.com/p/AF1QipMtODnfed1lndAQveAdRO4y325TFl40u6fa5x2J=w426-h240-k-no" width = "200px">',
+		'<h3>儀器設備大樓</h3>'+
+		'<img src="https://geo3.ggpht.com/cbk?panoid=NQkZ5upzeK57qdu-9wJXow&output=thumbnail&cb_client=search.gws-prod/maps/local-details-getcard.gps&thumb=2&w=408&h=240&yaw=278.5426&pitch=0&thumbfov=100" width = "200px">'
+	];
+	
+	function initMap()
+	{
+		map = new google.maps.Map(document.getElementById('display'),{
+			zoom: 15.5,
+			center: {
+				lat: 22.9981318,
+				lng: 120.2202079,
+			},
+		});
+		
+		for (var i = 0; i < position.length; i++)
+		{
+			addMarker(i);
+		}
+	}
+	
+	function addMarker(e)
+	{
+		markers[e] = new google.maps.Marker({
+			position: {
+				lat: position[e].lat,
+				lng: position[e].lng,
+			},
+			map: map,
+			label: position[e].label,
+			title: position[e].title
+		});
+		infoWindows[e] = new google.maps.InfoWindow({content:info_config[e]});
+		markers[e].addListener('click', function(){infoWindows[e].open(map, markers[e])});
+	}
+	
+	function setMap(i)
+	{
+		// console.log(i);
+		map.setCenter(new google.maps.LatLng(position[i].lat, position[i].lng));
+		map.setZoom(18);
+	}
+	function setMap_my()
+	{
+		// console.log(min_p);
+		map.setCenter(new google.maps.LatLng(position[min_p].lat, position[min_p].lng));
+		map.setZoom(18);
+	}
+	function resetMap()
+	{
+		// console.log(i);
+		map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
+		map.setZoom(15.5);
+	}
+	
+	// 載入
+	function get_data()
+	{
+		for(var i =0;i<8;i++)
+		{
+			get_campus_data(i);
+		}
+		geoFindMe();
+	}
     </script>
+	
