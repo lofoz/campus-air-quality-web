@@ -9,7 +9,7 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	
-	<body onload="get_data()">
+	<body onload="get_data(1)">
 		<!-- head -->
 		<div id="header">
 			<div class="logo">
@@ -29,9 +29,10 @@
 		<!-- nav -->
 		<div id="nav">
 			<ul>
-				<li class="first"> <a href="#">簡介</a> </li>
-				<li onclick="resetMap()"> <a href="#">Map</a> </li>
-				<li> <a href="#">運動路徑</a> </li>
+				<li class="first"> <a href="##">簡介</a> </li>
+				<li onclick="get_data(2)"> <a href="##">Map</a> </li>
+				<li onclick="analyze()"> <a href="##">數據分析</a> </li>
+				<li onclick="change_data_analyze()"> <a href="##">運動路徑</a> </li>
 				<li class="last" onclick="setMap_my()"> <span id="my_pm"></span> </li>
 			</ul>
 		</div>
@@ -189,7 +190,7 @@
 	</body>
 </html>
 
-<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script>
@@ -368,6 +369,7 @@
 		{
 			addMarker(i);
 		}
+		// console.log(document.getElementById('display').innerHTML);
 	}
 	
 	function addMarker(e)
@@ -400,18 +402,42 @@
 	function resetMap()
 	{
 		// console.log(i);
-		map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
-		map.setZoom(15.5);
+		// map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
+		// map.setZoom(15.5);
+		initMap();
 	}
 	
+	
+	var page = document.getElementById('sensor').innerHTML;
 	// 載入
-	function get_data()
+	function get_data(state)
 	{
-		for(var i =0;i<8;i++)
+		// 第一次載入地圖
+		if(state == 1)
 		{
-			get_campus_data(i);
+			for(var i =0;i<8;i++)
+			{
+				get_campus_data(i);
+			}
+			geoFindMe();
 		}
-		geoFindMe();
+		// 點擊 Map
+		else if(state == 2)
+		{
+			document.getElementById('sensor').innerHTML = page;
+			for(var i =0;i<8;i++)
+			{
+				get_campus_data(i);
+			}
+			resetMap();
+		}
+		
+	}
+	
+	function analyze()
+	{
+		document.getElementById('display').innerHTML = 555;
+		document.getElementById('sensor').innerHTML = 555;
 	}
     </script>
 	
