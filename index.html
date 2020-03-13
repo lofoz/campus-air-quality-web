@@ -28,19 +28,132 @@
 		
 		<!-- nav -->
 		<div id="nav">
-			<ul>
-				<li class="first"> <a href="##">簡介</a> </li>
-				<li onclick="get_data(2)"> <a href="##">Map</a> </li>
-				<li onclick="analyze()"> <a href="##">數據分析</a> </li>
-				<li onclick="change_data_analyze()"> <a href="##">運動路徑</a> </li>
-				<li class="last" onclick="setMap_my()"> <span id="my_pm"></span> </li>
+			<ul class="nav nav-pills-default" role="tablist">
+				<li class="nav-item" id="first"> <a class="nav-link" data-toggle="pill" href="#簡介">簡介</a> </li>
+				<li class="nav-item" onclick="get_data(2)"> <a class="nav-link active" data-toggle="pill" href="#map">Map</a> </li>
+				<li class="nav-item" onclick="analyze()"> <a class="nav-link" data-toggle="pill" href="#data_analyze">數據分析</a> </li>
+				<li class="nav-item" onclick="change_data_analyze()"> <a class="nav-link" data-toggle="pill" href="#運動路徑">運動路徑</a> </li>
+				<li class="nav-item" id="last" onclick="setMap_my()"> <span id="my_pm"></span> </li>
 			</ul>
 		</div>
 		
 		<!-- display -->
-		<div id="display"></div>
+		<div class="tab-content">
+			<div id="map" class="container tab-pane active"></div>
+			<div id="data_analyze" class="container tab-pane fade">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item" onclick="data_process(0)">
+						<a class="nav-link active" data-toggle="tab" href="#Sensor0">Sensor 0</a>
+					</li>
+					<li class="nav-item" onclick="data_process(1)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor1">Sensor 1</a>
+					</li>
+					<li class="nav-item" onclick="data_process(2)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor2">Sensor 2</a>
+					</li>
+					<li class="nav-item" onclick="data_process(3)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor3">Sensor 3</a>
+					</li>
+					<li class="nav-item" onclick="data_process(4)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor4">Sensor 4</a>
+					</li>
+					<li class="nav-item" onclick="data_process(5)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor5">Sensor 5</a>
+					</li>
+					<li class="nav-item" onclick="data_process(6)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor6">Sensor 6</a>
+					</li>
+					<li class="nav-item" onclick="data_process(7)">
+						<a class="nav-link" data-toggle="tab" href="#Sensor7">Sensor 7</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+				    <div id="Sensor0" class="container tab-pane active">
+						<div class="graph1" id="graph10"></div>
+						<div class="graph2" id="graph20"></div>
+						<div class="graph3" id="graph30"></div>
+						<div class="graph4" id="graph40"></div>
+						<div class="graph5" id="graph50"></div>
+						<div class="graph6" id="graph60"></div>
+						<div class="graph7" id="graph70"></div>
+						<div class="graph8" id="graph80"></div>
+					</div>
+				    <div id="Sensor1" class="container tab-pane fade">
+						<div class="graph1" id="graph11"></div>
+						<div class="graph2" id="graph21"></div>
+						<div class="graph3" id="graph31"></div>
+						<div class="graph4" id="graph41"></div>
+						<div class="graph5" id="graph51"></div>
+						<div class="graph6" id="graph61"></div>
+						<div class="graph7" id="graph71"></div>
+						<div class="graph8" id="graph81"></div>
+					</div>
+				    <div id="Sensor2" class="container tab-pane fade">
+						<div class="graph1" id="graph12"></div>
+						<div class="graph2" id="graph22"></div>
+						<div class="graph3" id="graph32"></div>
+						<div class="graph4" id="graph42"></div>
+						<div class="graph5" id="graph52"></div>
+						<div class="graph6" id="graph62"></div>
+						<div class="graph7" id="graph72"></div>
+						<div class="graph8" id="graph82"></div>
+					</div>
+					<div id="Sensor3" class="container tab-pane fade">
+						<div class="graph1" id="graph13"></div>
+						<div class="graph2" id="graph23"></div>
+						<div class="graph3" id="graph33"></div>
+						<div class="graph4" id="graph43"></div>
+						<div class="graph5" id="graph53"></div>
+						<div class="graph6" id="graph63"></div>
+						<div class="graph7" id="graph73"></div>
+						<div class="graph8" id="graph83"></div>
+					</div>
+					<div id="Sensor4" class="container tab-pane fade">
+						<div class="graph1" id="graph14"></div>
+						<div class="graph2" id="graph24"></div>
+						<div class="graph3" id="graph34"></div>
+						<div class="graph4" id="graph44"></div>
+						<div class="graph5" id="graph54"></div>
+						<div class="graph6" id="graph64"></div>
+						<div class="graph7" id="graph74"></div>
+						<div class="graph8" id="graph84"></div>
+					</div>
+					<div id="Sensor5" class="container tab-pane fade">
+						<div class="graph1" id="graph15"></div>
+						<div class="graph2" id="graph25"></div>
+						<div class="graph3" id="graph35"></div>
+						<div class="graph4" id="graph45"></div>
+						<div class="graph5" id="graph55"></div>
+						<div class="graph6" id="graph65"></div>
+						<div class="graph7" id="graph75"></div>
+						<div class="graph8" id="graph85"></div>
+					</div>
+					<div id="Sensor6" class="container tab-pane fade">
+						<div class="graph1" id="graph16"></div>
+						<div class="graph2" id="graph26"></div>
+						<div class="graph3" id="graph36"></div>
+						<div class="graph4" id="graph46"></div>
+						<div class="graph5" id="graph56"></div>
+						<div class="graph6" id="graph66"></div>
+						<div class="graph7" id="graph76"></div>
+						<div class="graph8" id="graph86"></div>
+					</div>
+					<div id="Sensor7" class="container tab-pane fade">
+						<div class="graph1" id="graph17"></div>
+						<div class="graph2" id="graph27"></div>
+						<div class="graph3" id="graph37"></div>
+						<div class="graph4" id="graph47"></div>
+						<div class="graph5" id="graph57"></div>
+						<div class="graph6" id="graph67"></div>
+						<div class="graph7" id="graph77"></div>
+						<div class="graph8" id="graph87"></div>
+					</div>
+				  </div>
+			</div>
+		</div>
 		
 		<!-- sensor -->
+		<div id = "parent">
 		<div id="sensor">
 			<div class="sensor-1">
 				<div class="section1">
@@ -74,10 +187,34 @@
 								<td><span id="3pm"></span></td>
 								<td><span id="3temp"></span></td>
 							</tr>
+							<tr class="table-warning" onclick="setMap(4)">
+								<th scope="row">4</th>
+								<td><span id="4pm"></span></td>
+								<td><span id="4temp"></span></td>
+							</tr>
+							<tr class="table-danger" onclick="setMap(5)">
+								<th scope="row">5</th>
+								<td><span id="5pm"></span></td>
+								<td><span id="5temp"></span></td>
+							</tr>
+							<tr class="table-secondary" onclick="setMap(6)">
+								<th scope="row">6</th>
+								<td><span id="6pm"></span></td>
+								<td><span id="6temp"></span></td>
+							</tr>
+							<tr class="table-light" onclick="setMap(7)">
+								<th scope="row">7</th>
+								<td><span id="7pm"></span></td>
+								<td><span id="7temp"></span></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div class="section2">
+					<h3><b>色溫圖</b></h3>
+					<img src="http://140.116.82.93:6800/campus/picture" width="640" />
+				</div>
+				<!-- <div class="section3">
 					<table class="table table-bordered table-hover">
 						<thead>
 							<tr>
@@ -109,10 +246,6 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
-				<!-- <div class="section3">
-					<h3>test</h3>
-					<p>test</p>
 				</div> -->
 			</div>
 			
@@ -133,6 +266,7 @@
 					</div>
 				</div>
 			</div> -->
+		</div>
 		</div>
 		
 		<!-- 底部 -->
@@ -191,8 +325,10 @@
 </html>
 
 <script src="js/jquery-3.4.1.js"></script>
-<script src="js/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script>
 <script language="JavaScript" crossorigin="anonymous">
 	var campus_data = [];
@@ -357,7 +493,7 @@
 	
 	function initMap()
 	{
-		map = new google.maps.Map(document.getElementById('display'),{
+		map = new google.maps.Map(document.getElementById('map'),{
 			zoom: 15.5,
 			center: {
 				lat: 22.9981318,
@@ -369,7 +505,7 @@
 		{
 			addMarker(i);
 		}
-		// console.log(document.getElementById('display').innerHTML);
+		// console.log(document.getElementById('Map').innerHTML);
 	}
 	
 	function addMarker(e)
@@ -409,6 +545,7 @@
 	
 	
 	var page = document.getElementById('sensor').innerHTML;
+	var analyze_data;
 	// 載入
 	function get_data(state)
 	{
@@ -424,20 +561,224 @@
 		// 點擊 Map
 		else if(state == 2)
 		{
-			document.getElementById('sensor').innerHTML = page;
-			for(var i =0;i<8;i++)
+			if(document.getElementById('sensor') == null)
 			{
-				get_campus_data(i);
+				var par = document.getElementById('parent');
+				var newNode = document.createElement("div");
+				newNode.setAttribute("id", "sensor");
+				newNode.innerHTML = page;
+				par.appendChild(newNode);
+				for(var i =0;i<8;i++)
+				{
+					get_campus_data(i);
+				}
+				resetMap();
 			}
-			resetMap();
+			else
+			{
+				for(var i =0;i<8;i++)
+				{
+					get_campus_data(i);
+				}
+				map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
+				map.setZoom(15.5);
+			}
 		}
 		
 	}
 	
 	function analyze()
 	{
-		document.getElementById('display').innerHTML = 555;
-		document.getElementById('sensor').innerHTML = 555;
+		var d_page = document.getElementById('sensor');
+		if(d_page != null)
+		{
+			d_page.innerHTML = "";
+			d_page.parentNode.removeChild(d_page);
+		}
+		
+		// 處理 data
+		var xhr = new XMLHttpRequest;
+		var url = "https://cors-anywhere.herokuapp.com/http://140.116.82.93:6800/campus/get_file";
+		xhr.open('GET',url);
+		xhr.responseType = 'json';
+		xhr.send();
+		xhr.onload = function()
+		{
+			analyze_data = xhr.response;
+			data_process(0)
+		}
+			// xhr.onreadystatechange = ()=>{
+			// 	if(xhr.readyState === XMLHttpRequest.DONE)
+			// 	{
+			// 		data = {};
+			// 		data['pm25'] = JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
+			// 		data['temp'] = JSON.stringify(xhr.response["avg_temp"]["temp"]);
+			// 		document.getElementById(pm_string).innerHTML=data.pm25;
+			// 		document.getElementById(temp_string).innerHTML=data.temp;
+			// 	}
+			// };
+	}
+	function data_process(sensor)
+	{
+		var s1 = analyze_data[sensor];
+		// console.log(analyze_data[0])
+		// console.log(s1["pm25hr"])
+		
+		// 24 小時分析圖
+		var hrtrace1 = {
+		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		  y: s1["humhr"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'humidity'
+		};
+		var hrtrace2 = {
+		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		  y: s1["pm10hr"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'PM10'
+		};
+		var hrtrace3 = {
+		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		  y: s1["pm100hr"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'PM100'
+		};
+		var hrtrace4 = {
+		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		  y: s1["pm25hr"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'PM25'
+		};
+		var hrtrace5 = {
+		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+		  y: s1["temphr"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'Temperature'
+		};
+		
+		
+		// 一週 分析圖
+		var wktrace1 = {
+		  x: ["一", "二", "三", "四", "五", "六", "日"],
+		  y: s1["humweek"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'humidity'
+		};
+		var wktrace2 = {
+			x: ["一", "二", "三", "四", "五", "六", "日"],
+		  y: s1["pm10week"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'PM10'
+		};
+		var wktrace3 = {
+			x: ["一", "二", "三", "四", "五", "六", "日"],
+		  y: s1["pm100week"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'PM100'
+		};
+		var wktrace4 = {
+			x: ["一", "二", "三", "四", "五", "六", "日"],
+		  y: s1["pm25week"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'PM25'
+		};
+		var wktrace5 = {
+			x: ["一", "二", "三", "四", "五", "六", "日"],
+		  y: s1["tempweek"],
+		  type: 'scatter',
+		  mode: 'lines+markers',
+		  name: 'Temperature'
+		};
+		
+		var hrlayout = {
+			title:'24 hour average sensor 分析圖',
+			width: 500,
+			height: 250,
+			xaxis: {
+				title: '小時 hr',
+			},
+			yaxis: {
+				title: '值 value',
+			},
+		};
+		var wklayout = {
+			title:'一週 sensor 分析圖',
+			width: 500,
+			height: 250,
+			xaxis: {
+				title: '一週 one week',
+			},
+			yaxis: {
+				title: '值 value',
+			},
+		};
+		// 1 hum   2 pm10   3 pm100   4 pm25   5 temp
+		var hrcom = [hrtrace4, hrtrace5]
+		Plotly.newPlot('graph1'+sensor, hrcom, hrlayout);
+		
+		var wkcom = [wktrace4, wktrace5]
+		Plotly.newPlot('graph2'+sensor, wkcom, wklayout);
+		
+		var hrcom = [hrtrace4, hrtrace1]
+		Plotly.newPlot('graph3'+sensor, hrcom, hrlayout);
+		
+		var wkcom = [wktrace4, wktrace1]
+		Plotly.newPlot('graph4'+sensor, wkcom, wklayout);
+		
+		var hrcom = [hrtrace2, hrtrace3, hrtrace4]
+		Plotly.newPlot('graph5'+sensor, hrcom, hrlayout);
+		
+		var wkcom = [wktrace2, wktrace3, wktrace4]
+		Plotly.newPlot('graph6'+sensor, wkcom, wklayout);
+		
+		// for(var i = 0; i < data.length; i++)
+		// {
+		// 	switch(data[i]["position"])
+		// 	{
+		// 		case 0:
+		// 			s0.push(data[i]);
+		// 		break;
+		// 		case 1:
+		// 			s1.push(data[i]);
+		// 		break;
+		// 		case 2:
+		// 			s2.push(data[i]);
+		// 		break;
+		// 		case 3:
+		// 			s3.push(data[i]);
+		// 		break;
+		// 		case 4:
+		// 			s4.push(data[i]);
+		// 		break;
+		// 		case 5:
+		// 			s5.push(data[i]);
+		// 		break;
+		// 		case 6:
+		// 			s6.push(data[i]);
+		// 		break;
+		// 		case 7:
+		// 			s7.push(data[i]);
+		// 		break;
+		// 		default:
+		// 			console.log(data[i]);
+		// 		break;
+		// 	}
+		// }
+		// console.log("oK");
+		
+		// for(var i = 0; i < s0.length; i++)
+		// {
+		// }
+		// console.log(s0[0]);
 	}
     </script>
 	
