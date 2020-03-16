@@ -212,7 +212,7 @@
 				</div>
 				<div class="section2">
 					<h3><b>色溫圖</b></h3>
-					<img src="http://140.116.82.93:6800/campus/picture" width="640" />
+					<img src="https://nckuairpollution.nctu.me:6800/campus/picture" width="640" />
 				</div>
 				<!-- <div class="section3">
 					<table class="table table-bordered table-hover">
@@ -346,7 +346,7 @@
 	function get_campus_data(i)
 	{
 		var xhr = new XMLHttpRequest;
-		var url ='http://140.116.82.93:6800/campus/'+String(i);
+		var url ='https://nckuairpollution.nctu.me:6800/campus/'+String(i);
 		var data = {};
 		xhr.responseType = 'json';
 		xhr.onreadystatechange = ()=>{
@@ -440,7 +440,7 @@
 	function get_my_campus_data(i)
 	{
 	    var xhr = new XMLHttpRequest;
-		var url ='http://140.116.82.93:6800/campus/'+String(i);
+		var url ='https://nckuairpollution.nctu.me:6800/campus/'+String(i);
 		var meg = "目前位置<br>最近sensor："+i;
 		xhr.responseType = 'json';
 		xhr.onreadystatechange = ()=>
@@ -598,7 +598,7 @@
 		
 		// 處理 data
 		var xhr = new XMLHttpRequest;
-		var url = "https://cors-anywhere.herokuapp.com/http://140.116.82.93:6800/campus/get_file";
+		var url = "https://nckuairpollution.nctu.me:6800/campus/get_file";
 		xhr.open('GET',url);
 		xhr.responseType = 'json';
 		xhr.send();
