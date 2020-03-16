@@ -14,9 +14,7 @@
 
 ## 簡介
 
-> ## **🚧網站正在維修中🚧**
-
-> 🌐 ~~Web-site is Here: https://140.116.82.93:8443/~~
+> 🌐 Web-site is Here: https://nckuairpollution.nctu.me
 
 > 📈 於成功大學校園內放置空氣盒子，收集資料，並分析空氣品質數據！
 
