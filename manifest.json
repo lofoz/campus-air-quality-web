@@ -2,9 +2,9 @@
 	"name": "NCKUair",
 	"short_name": "NCKUair",
 	"icons": [{
-		"src": "/img/icon-b.png",
+		"src": "/img/icon.svg",
 		"sizes": "192×192",
-		"type": "image/png"
+		"type": "image/svg"
 	}],
 	"start_url": "/index.html",
 	"background_color": "#000",
