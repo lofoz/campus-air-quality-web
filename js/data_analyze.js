@@ -138,6 +138,7 @@ function data_process(sensor) {
 		yaxis: {
 			title: '值 value',
 		},
+		width: 520
 	};
 	var wklayout = {
 		title: '一週 sensor 分析圖',
@@ -147,6 +148,7 @@ function data_process(sensor) {
 		yaxis: {
 			title: '值 value',
 		},
+		width: 520
 	};
 	// 1 hum   2 pm10   3 pm100   4 pm25   5 temp
 	var hrcom = [hrtrace4, hrtrace5];
