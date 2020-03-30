@@ -1,6 +1,9 @@
 $(document).ready(function() {
 	get_data(1);
 })
+$(".map_page").click(function() {
+	get_data(2);
+})
 
 var min_p = 0;
 var min_distance;
@@ -15,23 +18,10 @@ function get_data(state) {
 	}
 	// 點擊 Map
 	else if (state == 2) {
-		if (document.getElementById('sensor') == null) {
-			var par = document.getElementById('parent');
-			var newNode = document.createElement("div");
-			newNode.setAttribute("id", "sensor");
-			newNode.innerHTML = page;
-			par.appendChild(newNode);
-			for (var i = 0; i < 8; i++) {
-				get_campus_data(i);
-			}
-			resetMap();
-		} else {
-			for (var i = 0; i < 8; i++) {
-				get_campus_data(i);
-			}
-			map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
-			map.setZoom(15.5);
+		for (var i = 0; i < 8; i++) {
+			get_campus_data(i);
 		}
+		resetMap();
 	}
 }
 

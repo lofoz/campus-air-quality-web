@@ -1,5 +1,5 @@
 body {
-	font-family: -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+	font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'Microsoft JhengHei', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 .pmlocate {
@@ -11,4 +11,21 @@ body {
 .text-pmlocate {
 	color: white;
 	font-size: 14px;
+}
+
+.pmalert {
+	display: block;
+	background-color: #e9ecef;
+	text-align: center;
+}
+
+.text-pmalert {
+	color: black;
+	font-size: 14px;
+}
+
+@media (max-width: 992px) {
+	.pmtable {
+		margin-top: 0.5rem;
+	}
 }
