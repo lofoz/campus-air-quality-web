@@ -10,7 +10,7 @@
 		 crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
-		<link rel="manifest" href="./manifest.json"/>
+		<link rel="manifest" href="./manifest.json" />
 
 		<!-- load map -->
 		<script src="./js/googlemap.js" type="text/javascript" charset="utf-8"></script>
@@ -342,5 +342,15 @@
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 		<script src="./js/loaddata.js" type="text/javascript" charset="utf-8"></script>
 		<script src="./js/data_analyze.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/service-worker.js')
+						.then((reg) => {
+							console.log('Service worker registered.', reg);
+						});
+				});
+			}
+		</script>
 	</body>
 </html>
