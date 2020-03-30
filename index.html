@@ -1,784 +1,143 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-Hant-TW">
 	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>NCKU</title>
-		<link rel="stylesheet" href="css/styles.css" />
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqkHDM-JrgtN2FXNVhvLoHNm51SXMU4dc&callback=initMap"></script>
+		<script src="./js/googlemap.js" type="text/javascript" charset="utf-8"></script>
+
+		<title>成大空氣品質資料平台</title>
+
 	</head>
-	
-	<body onload="get_data(1)">
-		<!-- head -->
-		<div id="header">
-			<div class="logo">
-				<a href="#">
-					<img src="img/ncku-logo.jpg" />
-				</a>
-			</div>
-			
-			<div class="search">
-				<form>
-					<input type="text" value="SERACH" class="text" />
-					<input type="submit" class="bt" value="" />
-				</form>
-			</div>
-		</div>
-		
-		<!-- nav -->
-		<div id="nav">
-			<ul class="nav nav-pills-default" role="tablist">
-				<li class="nav-item" id="first"> <a class="nav-link" data-toggle="pill" href="#簡介">簡介</a> </li>
-				<li class="nav-item" onclick="get_data(2)"> <a class="nav-link active" data-toggle="pill" href="#map">Map</a> </li>
-				<li class="nav-item" onclick="analyze()"> <a class="nav-link" data-toggle="pill" href="#data_analyze">數據分析</a> </li>
-				<li class="nav-item" onclick="change_data_analyze()"> <a class="nav-link" data-toggle="pill" href="#運動路徑">運動路徑</a> </li>
-				<li class="nav-item" id="last" onclick="setMap_my()"> <span id="my_pm"></span> </li>
-			</ul>
-		</div>
-		
-		<!-- display -->
-		<div class="tab-content">
-			<div id="map" class="container tab-pane active"></div>
-			<div id="data_analyze" class="container tab-pane fade">
-				<ul class="nav nav-tabs" role="tablist">
-					<li class="nav-item" onclick="data_process(0)">
-						<a class="nav-link active" data-toggle="tab" href="#Sensor0">Sensor 0</a>
+	<body>
+		<!-- 標頭 -->
+		<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #00cc99;">
+			<a class="navbar-brand" href="#" style="font-size: 24px;">
+				<img class="mr-2" src="./img/ncku-logo-b.png" height="36" class="d-inline-block align-top" alt="">
+				空氣品質資料平台
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="#" style="font-size: 18px;">簡介 <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item" onclick="data_process(1)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor1">Sensor 1</a>
+					<li class="nav-item">
+						<a class="nav-link" href="#" style="font-size: 18px;">地圖</a>
 					</li>
-					<li class="nav-item" onclick="data_process(2)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor2">Sensor 2</a>
+					<li class="nav-item">
+						<a class="nav-link" href="#" style="font-size: 18px;">數據分析</a>
 					</li>
-					<li class="nav-item" onclick="data_process(3)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor3">Sensor 3</a>
-					</li>
-					<li class="nav-item" onclick="data_process(4)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor4">Sensor 4</a>
-					</li>
-					<li class="nav-item" onclick="data_process(5)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor5">Sensor 5</a>
-					</li>
-					<li class="nav-item" onclick="data_process(6)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor6">Sensor 6</a>
-					</li>
-					<li class="nav-item" onclick="data_process(7)">
-						<a class="nav-link" data-toggle="tab" href="#Sensor7">Sensor 7</a>
+					<li class="nav-item">
+						<a class="nav-link" href="#" style="font-size: 18px;">運動路徑</a>
 					</li>
 				</ul>
-				<div class="tab-content">
-				    <div id="Sensor0" class="container tab-pane active">
-						<div class="graph1" id="graph10"></div>
-						<div class="graph2" id="graph20"></div>
-						<div class="graph3" id="graph30"></div>
-						<div class="graph4" id="graph40"></div>
-						<div class="graph5" id="graph50"></div>
-						<div class="graph6" id="graph60"></div>
-						<div class="graph7" id="graph70"></div>
-						<div class="graph8" id="graph80"></div>
-					</div>
-				    <div id="Sensor1" class="container tab-pane fade">
-						<div class="graph1" id="graph11"></div>
-						<div class="graph2" id="graph21"></div>
-						<div class="graph3" id="graph31"></div>
-						<div class="graph4" id="graph41"></div>
-						<div class="graph5" id="graph51"></div>
-						<div class="graph6" id="graph61"></div>
-						<div class="graph7" id="graph71"></div>
-						<div class="graph8" id="graph81"></div>
-					</div>
-				    <div id="Sensor2" class="container tab-pane fade">
-						<div class="graph1" id="graph12"></div>
-						<div class="graph2" id="graph22"></div>
-						<div class="graph3" id="graph32"></div>
-						<div class="graph4" id="graph42"></div>
-						<div class="graph5" id="graph52"></div>
-						<div class="graph6" id="graph62"></div>
-						<div class="graph7" id="graph72"></div>
-						<div class="graph8" id="graph82"></div>
-					</div>
-					<div id="Sensor3" class="container tab-pane fade">
-						<div class="graph1" id="graph13"></div>
-						<div class="graph2" id="graph23"></div>
-						<div class="graph3" id="graph33"></div>
-						<div class="graph4" id="graph43"></div>
-						<div class="graph5" id="graph53"></div>
-						<div class="graph6" id="graph63"></div>
-						<div class="graph7" id="graph73"></div>
-						<div class="graph8" id="graph83"></div>
-					</div>
-					<div id="Sensor4" class="container tab-pane fade">
-						<div class="graph1" id="graph14"></div>
-						<div class="graph2" id="graph24"></div>
-						<div class="graph3" id="graph34"></div>
-						<div class="graph4" id="graph44"></div>
-						<div class="graph5" id="graph54"></div>
-						<div class="graph6" id="graph64"></div>
-						<div class="graph7" id="graph74"></div>
-						<div class="graph8" id="graph84"></div>
-					</div>
-					<div id="Sensor5" class="container tab-pane fade">
-						<div class="graph1" id="graph15"></div>
-						<div class="graph2" id="graph25"></div>
-						<div class="graph3" id="graph35"></div>
-						<div class="graph4" id="graph45"></div>
-						<div class="graph5" id="graph55"></div>
-						<div class="graph6" id="graph65"></div>
-						<div class="graph7" id="graph75"></div>
-						<div class="graph8" id="graph85"></div>
-					</div>
-					<div id="Sensor6" class="container tab-pane fade">
-						<div class="graph1" id="graph16"></div>
-						<div class="graph2" id="graph26"></div>
-						<div class="graph3" id="graph36"></div>
-						<div class="graph4" id="graph46"></div>
-						<div class="graph5" id="graph56"></div>
-						<div class="graph6" id="graph66"></div>
-						<div class="graph7" id="graph76"></div>
-						<div class="graph8" id="graph86"></div>
-					</div>
-					<div id="Sensor7" class="container tab-pane fade">
-						<div class="graph1" id="graph17"></div>
-						<div class="graph2" id="graph27"></div>
-						<div class="graph3" id="graph37"></div>
-						<div class="graph4" id="graph47"></div>
-						<div class="graph5" id="graph57"></div>
-						<div class="graph6" id="graph67"></div>
-						<div class="graph7" id="graph77"></div>
-						<div class="graph8" id="graph87"></div>
-					</div>
-				  </div>
 			</div>
-		</div>
-		
-		<!-- sensor -->
-		<div id = "parent">
-		<div id="sensor">
-			<div class="sensor-1">
-				<div class="section1">
-					<h3>Sensor</h3>
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Campus No.</th>
-								<th scope="col">PM2.5</th>
-								<th scope="col">Temperature</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="table-muted" onclick="setMap(0)">
-								<th scope="row">0</th>
-								<td><span id="0pm"></span></td>
-								<td><span id="0temp"></span></td>
-							</tr>
-							<tr class="table-primary" onclick="setMap(1)">
-								<th scope="row">1</th>
-								<td><span id="1pm"></span></td>
-								<td><span id="1temp"></span></td>
-							</tr>
-							<tr class="table-success" onclick="setMap(2)">
-								<th scope="row">2</th>
-								<td><span id="2pm"></span></td>
-								<td><span id="2temp"></span></td>
-							</tr>
-							<tr class="table-info" onclick="setMap(3)">
-								<th scope="row">3</th>
-								<td><span id="3pm"></span></td>
-								<td><span id="3temp"></span></td>
-							</tr>
-							<tr class="table-warning" onclick="setMap(4)">
-								<th scope="row">4</th>
-								<td><span id="4pm"></span></td>
-								<td><span id="4temp"></span></td>
-							</tr>
-							<tr class="table-danger" onclick="setMap(5)">
-								<th scope="row">5</th>
-								<td><span id="5pm"></span></td>
-								<td><span id="5temp"></span></td>
-							</tr>
-							<tr class="table-secondary" onclick="setMap(6)">
-								<th scope="row">6</th>
-								<td><span id="6pm"></span></td>
-								<td><span id="6temp"></span></td>
-							</tr>
-							<tr class="table-light" onclick="setMap(7)">
-								<th scope="row">7</th>
-								<td><span id="7pm"></span></td>
-								<td><span id="7temp"></span></td>
-							</tr>
-						</tbody>
-					</table>
+		</nav>
+
+
+		<div class="container mt-4">
+			<!-- 麵包屑 -->
+			<div class="row">
+				<div class="col-md-8 col-sm-6">
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item"><a href="#">Library</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Data</li>
+						</ol>
+					</nav>
 				</div>
-				<div class="section2">
-					<h3><b>色溫圖</b></h3>
-					<img src="https://nckuairpollution.nctu.me:6800/campus/picture" width="640" />
+				<div class="col-md-4 col-sm-6">
+					<nav aria-label="breadcrumb" onclick="setMap_my()">
+						<ol class="breadcrumb pmlocate">
+							<li class="breadcrumb-item text-pmlocate" id="my_pm">目前位置 最近Sensor：2<br>PM2.5：17.5 μg/m<sup>3</sup></li>
+						</ol>
+					</nav>
 				</div>
-				<!-- <div class="section3">
-					<table class="table table-bordered table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Campus No.</th>
-								<th scope="col">PM2.5</th>
-								<th scope="col">Temperature</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="table-warning" onclick="setMap(4)">
-								<th scope="row">4</th>
-								<td><span id="4pm"></span></td>
-								<td><span id="4temp"></span></td>
-							</tr>
-							<tr class="table-danger" onclick="setMap(5)">
-								<th scope="row">5</th>
-								<td><span id="5pm"></span></td>
-								<td><span id="5temp"></span></td>
-							</tr>
-							<tr class="table-secondary" onclick="setMap(6)">
-								<th scope="row">6</th>
-								<td><span id="6pm"></span></td>
-								<td><span id="6temp"></span></td>
-							</tr>
-							<tr class="table-light" onclick="setMap(7)">
-								<th scope="row">7</th>
-								<td><span id="7pm"></span></td>
-								<td><span id="7temp"></span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div> -->
 			</div>
-			
-			<!-- <div class="sensor-2">
-				<h3>test</h3>
-				<div class="content">
-					<div class="smallBox">
-						<a href="#">test</a>
-					</div>
-					<div class="smallBox">
-						<a href="#">test</a>
-					</div>
-					<div class="smallBox">
-						<a href="#">test</a>
-					</div>
-					<div class="smallBox" style="margin-right: 0;">
-						<a href="#">test</a>
-					</div>
+
+			<!-- 地圖和PM表格 -->
+			<div class="row">
+				<div class="col-lg-8">
+					<div id="map" class="embed-responsive embed-responsive-16by9"></div>
 				</div>
-			</div> -->
-		</div>
-		</div>
-		
-		<!-- 底部 -->
-		<div id="footer">
-			<div class="section1">
-				<!-- <div class="view1">
-					<h3>test</h3>
-					<ul>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-					</ul>
-					<ul style="margin: 0 70px;">
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-					</ul>
-					<ul>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-					</ul>
-				</div>
-				<div class="view2" style="margin: 0 49px;">
-					<h3>test</h3>
-					<ul style="margin-left: 10px;">
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-						<li> <a href="#">test</a> </li>
-					</ul>
-				</div>
-				<div class="view3">
-					<h3>test</h3>
-				</div> -->
-			</div>
-			
-			<div class="section2">
-				<!-- <div class="view1">
-					<a href="#">test</a> <span>|</span>
-					<a href="#">test</a> <span>|</span>
-					<a href="#">test</a> <span>|</span>
-					<a href="#">test</a>
-				</div> -->
-				
-				<div class="view2">
-					COPYRIGHT&nbsp;&copy;&nbsp;GitHub-lofoz
+				<div class="col-lg-4 col-6">
+					<div class="table-responsive">
+						<table class="table table-sm table-bordered table-hover">
+							<thead>
+								<tr>
+									<th scope="col">位置</th>
+									<th scope="col">PM2.5(μg/m<sup>3</sup>)</th>
+									<th scope="col">溫度(°C)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="table-muted" onclick="setMap(0)">
+									<th scope="row">0</th>
+									<td><span id="0pm"></span></td>
+									<td><span id="0temp"></span></td>
+								</tr>
+								<tr class="table-primary" onclick="setMap(1)">
+									<th scope="row">1</th>
+									<td><span id="1pm"></span></td>
+									<td><span id="1temp"></span></td>
+								</tr>
+								<tr class="table-success" onclick="setMap(2)">
+									<th scope="row">2</th>
+									<td><span id="2pm"></span></td>
+									<td><span id="2temp"></span></td>
+								</tr>
+								<tr class="table-info" onclick="setMap(3)">
+									<th scope="row">3</th>
+									<td><span id="3pm"></span></td>
+									<td><span id="3temp"></span></td>
+								</tr>
+								<tr class="table-warning" onclick="setMap(4)">
+									<th scope="row">4</th>
+									<td><span id="4pm"></span></td>
+									<td><span id="4temp"></span></td>
+								</tr>
+								<tr class="table-danger" onclick="setMap(5)">
+									<th scope="row">5</th>
+									<td><span id="5pm"></span></td>
+									<td><span id="5temp"></span></td>
+								</tr>
+								<tr class="table-secondary" onclick="setMap(6)">
+									<th scope="row">6</th>
+									<td><span id="6pm"></span></td>
+									<td><span id="6temp"></span></td>
+								</tr>
+								<tr class="table-light" onclick="setMap(7)">
+									<th scope="row">7</th>
+									<td><span id="7pm"></span></td>
+									<td><span id="7temp"></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		 crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		 crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		 crossorigin="anonymous"></script>
+		<script src="./js/loaddata.js" type="text/javascript" charset="utf-8"></script>
+
 	</body>
 </html>
-
-<script src="js/jquery-3.4.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script>
-<script language="JavaScript" crossorigin="anonymous">
-	var campus_data = [];
-	var min_p = 0;
-    function sleep(ms){
-
-    var starttime= new Date().getTime();
-
-    do{
-
-    }while((new Date().getTime()-starttime)<ms)
-
-    }
-	
-	function get_campus_data(i)
-	{
-		var xhr = new XMLHttpRequest;
-		var url ='https://nckuairpollution.nctu.me:6800/campus/'+String(i);
-		var data = {};
-		xhr.responseType = 'json';
-		xhr.onreadystatechange = ()=>{
-			if(xhr.readyState === XMLHttpRequest.DONE)
-			{
-				//document.write(JSON.stringify(xhr.response));
-				//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
-				var pm_string = String(i)+"pm";
-				var temp_string =String(i)+"temp";
-				data = {};
-				data['pm25'] = JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
-				data['temp'] = JSON.stringify(xhr.response["avg_temp"]["temp"]);
-				document.getElementById(pm_string).innerHTML=data.pm25;
-				document.getElementById(temp_string).innerHTML=data.temp;
-			}
-		};
-		xhr.open('GET',url);
-		xhr.send();
-	}
-	
-	// 算sensor 和 user 距離 ，以及取得GPS data
-	var min_distance;
-	function geoFindMe()
-	{
-		var output = document.getElementById("my_pm");
-		var sensor_lng = [120.216805, 120.2199081, 120.21920399999999, 120.21641, 120.215185, 120.220804, 120.218550, 120.223672];
-		var sensor_lat = [23.003028, 23.0018649, 22.993629799999997, 22.997920, 23.000781, 22.996768, 22.998106, 22.997850];
-		var my_lat, my_lng;
-		if (!navigator.geolocation)
-		{
-			output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-			return;
-		}
-		function success(position)
-		{
-			var distance = [];
-			var min;
-			// var meg = "目前位置<br>最近sensor：";
-			my_lat = position.coords.latitude;
-			my_lng = position.coords.longitude;
-			for(var i =0; i<8; i++)
-			{
-				distance[i] = distanceByLnglat(sensor_lng[i], sensor_lat[i], my_lng, my_lat);
-			}
-			min = distance[0];
-			for(var i = 1; i < 8; i++)
-			{
-				if(distance[i] < min)
-				{
-					min = distance[i];
-					min_p = i;
-				}
-			}
-			// output.innerHTML = min_p;
-			//document.write(JSON.stringify(xhr.response));
-			//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
-			// meg = meg + min_p +"<br>PM2.5："+campus_data[min_p].pm25;
-			// document.getElementById("my_pm").innerHTML=meg;
-			get_my_campus_data(min_p);
-		// // var img = new Image();
-		// mg.src = "http://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
-		// output.appendChild(img);
-		};
-		function error()
-		{
-			output.innerHTML = "Unable to retrieve your location";
-		};
-		output.innerHTML = "<p>Locating…</p>";
-		navigator.geolocation.getCurrentPosition(success, error);
-	}
-	
-	// 算user 和 sensor 之間的距離
-	function distanceByLnglat(lng1,lat1,lng2,lat2)
-	{
-		var radLat1 = Rad(lat1);
-		var radLat2 = Rad(lat2);
-		var a = radLat1 - radLat2;
-		var b = Rad(lng1) - Rad(lng2);
-		var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
-		s = s * 6378137.0;// 取WGS84標準參考橢球中的地球長半徑(單位:m)
-		s = Math.round(s * 10000) / 10000;
-		return s;
-		// //下面為兩點間空間距離（非球面體）
-		// var value= Math.pow(Math.pow(lng1-lng2,2)+Math.pow(lat1-lat2,2),1/2);
-		// alert(value);
-	}
-	function Rad(d)
-	{
-		return d * Math.PI / 180.0;
-	}
-	function get_my_campus_data(i)
-	{
-	    var xhr = new XMLHttpRequest;
-		var url ='https://nckuairpollution.nctu.me:6800/campus/'+String(i);
-		var meg = "目前位置<br>最近sensor："+i;
-		xhr.responseType = 'json';
-		xhr.onreadystatechange = ()=>
-		{
-			if(xhr.readyState === XMLHttpRequest.DONE)
-			{
-				//document.write(JSON.stringify(xhr.response));
-				//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
-				meg = meg+"<br>PM2.5："+JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
-				document.getElementById("my_pm").innerHTML=meg;
-			}
-		};
-		xhr.open('GET',url);
-		xhr.send();
-	}
-	
-	
-	// 顯示 google map 在display 上
-	var map;
-	var markers = [];
-	var infoWindows = [];
-	var position = [
-		{label:'0',lat:23.003028,lng:120.216805,title:"生命科學系館"},
-		{label:'1',lat:23.0018649,lng:120.2199081,title:"MRI中心"},
-		{label:'2',lat:22.993629799999997,lng:120.21920399999999,title:"勝利一舍"},
-		{label:'3',lat:22.997920,lng:120.21641,title:"學生活動中心(一)"},
-		{label:'4',lat:23.000781,lng:120.215185,title:"建築學系館"},
-		{label:'5',lat:22.996768,lng:120.220804,title:"資訊工程學系館"},
-		{label:'6',lat:22.998106,lng:120.218550,title:"計算機與網路中心"},
-		{label:'7',lat:22.997850,lng:120.223672,title:"儀器設備大樓"}
-	];
-	var info_config = [
-		'<h3>生命科學系館</h3>'+
-		'<img src="https://lh5.googleusercontent.com/p/AF1QipMDP24pxMChUca398nsNrwKNzHjCYtxBrWd7zpT=w408-h306-k-no" width = "200px">',
-		'<h3>MRI中心</h3>'+
-		'<img src="http://fmri.ncku.edu.tw/tw/themes/default/images/about2_front.png" width = "200px">',
-		'<h3>勝利一舍</h3>'+
-		'<img src="https://follaw.tw/wp-content/uploads/2019/11/%E5%8B%9D%E5%88%A9%E4%B8%80%E8%88%8D.jpg" width = "200px">',
-		'<h3>學生活動中心(一)</h3>'+
-		'<img src="https://lh5.googleusercontent.com/p/AF1QipODRtUBOvqKhoNqKJx-Td1Ycl8VNO5vjkRaRIKa=w408-h306-k-no" width = "200px">',
-		'<h3>建築學系館</h3>'+
-		'<img src="https://lh5.googleusercontent.com/p/AF1QipNofp6pF9NyvRUhVR_w-aJlhEuPasQcQSWHTU1q=w408-h306-k-no" width = "200px">',
-		'<h3>資訊工程學系館</h3>'+
-		'<img src="https://lh5.googleusercontent.com/p/AF1QipMCX_rrJ80CAl9OEVYGK8hkd_wKunbaPCk9hSs7=w408-h306-k-no" width = "200px">',
-		'<h3>計算機與網路中心</h3>'+
-		'<img src="https://lh5.googleusercontent.com/p/AF1QipMtODnfed1lndAQveAdRO4y325TFl40u6fa5x2J=w426-h240-k-no" width = "200px">',
-		'<h3>儀器設備大樓</h3>'+
-		'<img src="https://geo3.ggpht.com/cbk?panoid=NQkZ5upzeK57qdu-9wJXow&output=thumbnail&cb_client=search.gws-prod/maps/local-details-getcard.gps&thumb=2&w=408&h=240&yaw=278.5426&pitch=0&thumbfov=100" width = "200px">'
-	];
-	
-	function initMap()
-	{
-		map = new google.maps.Map(document.getElementById('map'),{
-			zoom: 15.5,
-			center: {
-				lat: 22.9981318,
-				lng: 120.2202079,
-			},
-		});
-		
-		for (var i = 0; i < position.length; i++)
-		{
-			addMarker(i);
-		}
-		// console.log(document.getElementById('Map').innerHTML);
-	}
-	
-	function addMarker(e)
-	{
-		markers[e] = new google.maps.Marker({
-			position: {
-				lat: position[e].lat,
-				lng: position[e].lng,
-			},
-			map: map,
-			label: position[e].label,
-			title: position[e].title
-		});
-		infoWindows[e] = new google.maps.InfoWindow({content:info_config[e]});
-		markers[e].addListener('click', function(){infoWindows[e].open(map, markers[e])});
-	}
-	
-	function setMap(i)
-	{
-		// console.log(i);
-		map.setCenter(new google.maps.LatLng(position[i].lat, position[i].lng));
-		map.setZoom(18);
-	}
-	function setMap_my()
-	{
-		// console.log(min_p);
-		map.setCenter(new google.maps.LatLng(position[min_p].lat, position[min_p].lng));
-		map.setZoom(18);
-	}
-	function resetMap()
-	{
-		// console.log(i);
-		// map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
-		// map.setZoom(15.5);
-		initMap();
-	}
-	
-	
-	var page = document.getElementById('sensor').innerHTML;
-	var analyze_data;
-	// 載入
-	function get_data(state)
-	{
-		// 第一次載入地圖
-		if(state == 1)
-		{
-			for(var i =0;i<8;i++)
-			{
-				get_campus_data(i);
-			}
-			geoFindMe();
-		}
-		// 點擊 Map
-		else if(state == 2)
-		{
-			if(document.getElementById('sensor') == null)
-			{
-				var par = document.getElementById('parent');
-				var newNode = document.createElement("div");
-				newNode.setAttribute("id", "sensor");
-				newNode.innerHTML = page;
-				par.appendChild(newNode);
-				for(var i =0;i<8;i++)
-				{
-					get_campus_data(i);
-				}
-				resetMap();
-			}
-			else
-			{
-				for(var i =0;i<8;i++)
-				{
-					get_campus_data(i);
-				}
-				map.setCenter(new google.maps.LatLng(22.9981318, 120.2202079));
-				map.setZoom(15.5);
-			}
-		}
-		
-	}
-	
-	function analyze()
-	{
-		var d_page = document.getElementById('sensor');
-		if(d_page != null)
-		{
-			d_page.innerHTML = "";
-			d_page.parentNode.removeChild(d_page);
-		}
-		
-		// 處理 data
-		var xhr = new XMLHttpRequest;
-		var url = "https://nckuairpollution.nctu.me:6800/campus/get_file";
-		xhr.open('GET',url);
-		xhr.responseType = 'json';
-		xhr.send();
-		xhr.onload = function()
-		{
-			analyze_data = xhr.response;
-			data_process(0)
-		}
-			// xhr.onreadystatechange = ()=>{
-			// 	if(xhr.readyState === XMLHttpRequest.DONE)
-			// 	{
-			// 		data = {};
-			// 		data['pm25'] = JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
-			// 		data['temp'] = JSON.stringify(xhr.response["avg_temp"]["temp"]);
-			// 		document.getElementById(pm_string).innerHTML=data.pm25;
-			// 		document.getElementById(temp_string).innerHTML=data.temp;
-			// 	}
-			// };
-	}
-	function data_process(sensor)
-	{
-		var s1 = analyze_data[sensor];
-		// console.log(analyze_data[0])
-		// console.log(s1["pm25hr"])
-		
-		// 24 小時分析圖
-		var hrtrace1 = {
-		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-		  y: s1["humhr"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'humidity'
-		};
-		var hrtrace2 = {
-		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-		  y: s1["pm10hr"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'PM10'
-		};
-		var hrtrace3 = {
-		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-		  y: s1["pm100hr"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'PM100'
-		};
-		var hrtrace4 = {
-		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-		  y: s1["pm25hr"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'PM25'
-		};
-		var hrtrace5 = {
-		  x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-		  y: s1["temphr"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'Temperature'
-		};
-		
-		
-		// 一週 分析圖
-		var wktrace1 = {
-		  x: ["一", "二", "三", "四", "五", "六", "日"],
-		  y: s1["humweek"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'humidity'
-		};
-		var wktrace2 = {
-			x: ["一", "二", "三", "四", "五", "六", "日"],
-		  y: s1["pm10week"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'PM10'
-		};
-		var wktrace3 = {
-			x: ["一", "二", "三", "四", "五", "六", "日"],
-		  y: s1["pm100week"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'PM100'
-		};
-		var wktrace4 = {
-			x: ["一", "二", "三", "四", "五", "六", "日"],
-		  y: s1["pm25week"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'PM25'
-		};
-		var wktrace5 = {
-			x: ["一", "二", "三", "四", "五", "六", "日"],
-		  y: s1["tempweek"],
-		  type: 'scatter',
-		  mode: 'lines+markers',
-		  name: 'Temperature'
-		};
-		
-		var hrlayout = {
-			title:'24 hour average sensor 分析圖',
-			width: 500,
-			height: 250,
-			xaxis: {
-				title: '小時 hr',
-			},
-			yaxis: {
-				title: '值 value',
-			},
-		};
-		var wklayout = {
-			title:'一週 sensor 分析圖',
-			width: 500,
-			height: 250,
-			xaxis: {
-				title: '一週 one week',
-			},
-			yaxis: {
-				title: '值 value',
-			},
-		};
-		// 1 hum   2 pm10   3 pm100   4 pm25   5 temp
-		var hrcom = [hrtrace4, hrtrace5]
-		Plotly.newPlot('graph1'+sensor, hrcom, hrlayout);
-		
-		var wkcom = [wktrace4, wktrace5]
-		Plotly.newPlot('graph2'+sensor, wkcom, wklayout);
-		
-		var hrcom = [hrtrace4, hrtrace1]
-		Plotly.newPlot('graph3'+sensor, hrcom, hrlayout);
-		
-		var wkcom = [wktrace4, wktrace1]
-		Plotly.newPlot('graph4'+sensor, wkcom, wklayout);
-		
-		var hrcom = [hrtrace2, hrtrace3, hrtrace4]
-		Plotly.newPlot('graph5'+sensor, hrcom, hrlayout);
-		
-		var wkcom = [wktrace2, wktrace3, wktrace4]
-		Plotly.newPlot('graph6'+sensor, wkcom, wklayout);
-		
-		// for(var i = 0; i < data.length; i++)
-		// {
-		// 	switch(data[i]["position"])
-		// 	{
-		// 		case 0:
-		// 			s0.push(data[i]);
-		// 		break;
-		// 		case 1:
-		// 			s1.push(data[i]);
-		// 		break;
-		// 		case 2:
-		// 			s2.push(data[i]);
-		// 		break;
-		// 		case 3:
-		// 			s3.push(data[i]);
-		// 		break;
-		// 		case 4:
-		// 			s4.push(data[i]);
-		// 		break;
-		// 		case 5:
-		// 			s5.push(data[i]);
-		// 		break;
-		// 		case 6:
-		// 			s6.push(data[i]);
-		// 		break;
-		// 		case 7:
-		// 			s7.push(data[i]);
-		// 		break;
-		// 		default:
-		// 			console.log(data[i]);
-		// 		break;
-		// 	}
-		// }
-		// console.log("oK");
-		
-		// for(var i = 0; i < s0.length; i++)
-		// {
-		// }
-		// console.log(s0[0]);
-	}
-    </script>
-	
