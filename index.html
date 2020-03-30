@@ -14,9 +14,9 @@
 		<!-- load map -->
 		<script src="./js/googlemap.js" type="text/javascript" charset="utf-8"></script>
 		<!-- local -->
-		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqkHDM-JrgtN2FXNVhvLoHNm51SXMU4dc&callback=initMap"></script> -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqkHDM-JrgtN2FXNVhvLoHNm51SXMU4dc&callback=initMap"></script>
 		<!-- online -->
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script>
+		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script> -->
 
 		<title>成大空氣品質資料平台</title>
 
@@ -34,22 +34,18 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-					<ul class="navbar-nav nav nav-pills" role="tablist">
+					<ul class="navbar-nav nav nav-pills">
 						<li class="nav-item info">
-							<a class="nav-link bg-transparent" id="info-tab" data-toggle="pill" href="#info" role="tab" aria-controls="info"
-							 aria-selected="false" style="font-size: 18px;">簡介 <span class="sr-only">(current)</span></a>
+							<a class="nav-link bg-transparent" data-toggle="pill" href="#" style="font-size: 18px;">簡介 <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item map_page">
-							<a class="nav-link bg-transparent active" id="map_page-tab" data-toggle="pill" href="#map_page" role="tab"
-							 aria-controls="map_page" aria-selected="true" style="font-size: 18px;">地圖</a>
+							<a class="nav-link bg-transparent active" data-toggle="pill" href="#map_page" style="font-size: 18px;">地圖</a>
 						</li>
 						<li class="nav-item data_analyze">
-							<a class="nav-link bg-transparent" id="data_analyze-tab" data-toggle="pill" href="#data_analyze" role="tab"
-							 aria-controls="data_analyze" aria-selected="false" style="font-size: 18px;">數據分析</a>
+							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='data_analyze.html'" href="#data_analyze" style="font-size: 18px;">數據分析</a>
 						</li>
 						<li class="nav-item sport_page">
-							<a class="nav-link bg-transparent" id="sport_page-tab" data-toggle="pill" href="#sport_page" role="tab"
-							 aria-controls="sport_page" aria-selected="false" style="font-size: 18px;">運動路徑</a>
+							<a class="nav-link bg-transparent" data-toggle="pill" href="#" style="font-size: 18px;">運動路徑</a>
 						</li>
 					</ul>
 				</div>
@@ -58,13 +54,12 @@
 
 
 		<div class="container mt-4">
-			<div class="tab-content">
 				<!-- 簡介 主頁面 -->
-				<div id="info" class="tab-pane fade" role="tabpanel" aria-labelledby="info-tab">
+				<!-- <div id="info" class="tab-pane fade" role="tabpanel" aria-labelledby="info-tab">
 
-				</div>
+				</div> -->
 				<!-- 地圖 主頁面 -->
-				<div id="map_page" class="tab-pane fade show active" role="tabpanel" aria-labelledby="map_page-tab">
+				<div id="map_page">
 					<!-- 麵包屑 -->
 					<div class="row">
 						<div class="col-md-8 col-sm-6">
@@ -151,183 +146,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- 數據分析 主頁面 -->
-				<div id="data_analyze" class="tab-pane fade" role="tabpanel" aria-labelledby="data_analyze-tab">
-					<!-- sensor 導覽 -->
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="nav-item das0">
-							<a class="nav-link active" id="Sensor0-tab" data-toggle="tab" href="#Sensor0" role="tab" aria-controls="Sensor0"
-							 aria-selected="true">Sensor 0</a>
-						</li>
-						<li class="nav-item das1">
-							<a class="nav-link" id="Sensor1-tab" data-toggle="tab" href="#Sensor1" role="tab" aria-controls="Sensor1"
-							 aria-selected="false">Sensor 1</a>
-						</li>
-						<li class="nav-item das2">
-							<a class="nav-link" id="Sensor2-tab" data-toggle="tab" href="#Sensor2" role="tab" aria-controls="Sensor2"
-							 aria-selected="false">Sensor 2</a>
-						</li>
-						<li class="nav-item das3">
-							<a class="nav-link" id="Sensor3-tab" data-toggle="tab" href="#Sensor3" role="tab" aria-controls="Sensor3"
-							 aria-selected="false">Sensor 3</a>
-						</li>
-						<li class="nav-item das4">
-							<a class="nav-link" id="Sensor4-tab" data-toggle="tab" href="#Sensor4" role="tab" aria-controls="Sensor4"
-							 aria-selected="false">Sensor 4</a>
-						</li>
-						<li class="nav-item das5">
-							<a class="nav-link" id="Sensor5-tab" data-toggle="tab" href="#Sensor5" role="tab" aria-controls="Sensor5"
-							 aria-selected="false">Sensor 5</a>
-						</li>
-						<li class="nav-item das6">
-							<a class="nav-link" id="Sensor6-tab" data-toggle="tab" href="#Sensor6" role="tab" aria-controls="Sensor6"
-							 aria-selected="false">Sensor 6</a>
-						</li>
-						<li class="nav-item das7">
-							<a class="nav-link" id="Sensor7-tab" data-toggle="tab" href="#Sensor7" role="tab" aria-controls="Sensor7"
-							 aria-selected="false">Sensor 7</a>
-						</li>
-					</ul>
-					<!-- Sensor 資料分頁 -->
-					<div class="container">
-						<div class="tab-content">
-							<div id="Sensor0" class="tab-pane fade active" role="tabpanel" aria-labelledby="Sensor0-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph10"></div>
-										<div class="graph3" id="graph30"></div>
-										<div class="graph5" id="graph50"></div>
-										<div class="graph7" id="graph70"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph20"></div>
-										<div class="graph4" id="graph40"></div>
-										<div class="graph6" id="graph60"></div>
-										<div class="graph8" id="graph80"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor1" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor1-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph11"></div>
-										<div class="graph3" id="graph31"></div>
-										<div class="graph5" id="graph51"></div>
-										<div class="graph7" id="graph71"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph21"></div>
-										<div class="graph4" id="graph41"></div>
-										<div class="graph6" id="graph61"></div>
-										<div class="graph8" id="graph81"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor2" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor2-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph12"></div>
-										<div class="graph3" id="graph32"></div>
-										<div class="graph5" id="graph52"></div>
-										<div class="graph7" id="graph72"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph22"></div>
-										<div class="graph4" id="graph42"></div>
-										<div class="graph6" id="graph62"></div>
-										<div class="graph8" id="graph82"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor3" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor3-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph13"></div>
-										<div class="graph3" id="graph33"></div>
-										<div class="graph5" id="graph53"></div>
-										<div class="graph7" id="graph73"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph23"></div>
-										<div class="graph4" id="graph43"></div>
-										<div class="graph6" id="graph63"></div>
-										<div class="graph8" id="graph83"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor4" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor4-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph14"></div>
-										<div class="graph3" id="graph34"></div>
-										<div class="graph5" id="graph54"></div>
-										<div class="graph7" id="graph74"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph24"></div>
-										<div class="graph4" id="graph44"></div>
-										<div class="graph6" id="graph64"></div>
-										<div class="graph8" id="graph84"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor5" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor5-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph15"></div>
-										<div class="graph3" id="graph35"></div>
-										<div class="graph5" id="graph55"></div>
-										<div class="graph7" id="graph75"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph25"></div>
-										<div class="graph4" id="graph45"></div>
-										<div class="graph6" id="graph65"></div>
-										<div class="graph8" id="graph85"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor6" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor6-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph16"></div>
-										<div class="graph3" id="graph36"></div>
-										<div class="graph5" id="graph56"></div>
-										<div class="graph7" id="graph76"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph26"></div>
-										<div class="graph4" id="graph46"></div>
-										<div class="graph6" id="graph66"></div>
-										<div class="graph8" id="graph86"></div>
-									</div>
-								</div>
-							</div>
-							<div id="Sensor7" class="tab-pane fade" role="tabpanel" aria-labelledby="Sensor7-tab">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="graph1" id="graph17"></div>
-										<div class="graph3" id="graph37"></div>
-										<div class="graph5" id="graph57"></div>
-										<div class="graph7" id="graph77"></div>
-									</div>
-									<div class="col-lg-6">
-										<div class="graph2" id="graph27"></div>
-										<div class="graph4" id="graph47"></div>
-										<div class="graph6" id="graph67"></div>
-										<div class="graph8" id="graph87"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
 				<!-- 運動路徑 主頁面 -->
-				<div id="sport_page" class="tab-pane fade" role="tabpanel" aria-labelledby="sport_page-tab">
+				<!-- <div id="sport_page" class="tab-pane fade" role="tabpanel" aria-labelledby="sport_page-tab">
 
-				</div>
-			</div>
+				</div> -->
 		</div>
 
 		<!-- Optional JavaScript -->
@@ -339,7 +161,6 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		 crossorigin="anonymous"></script>
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-		<script src="./js/loaddata.js" type="text/javascript" charset="utf-8"></script>
-		<script src="./js/data_analyze.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/loaddata.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
