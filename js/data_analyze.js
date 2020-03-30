@@ -132,8 +132,6 @@ function data_process(sensor) {
 
 	var hrlayout = {
 		title: '24 hour average sensor 分析圖',
-		width: 500,
-		height: 250,
 		xaxis: {
 			title: '小時 hr',
 		},
@@ -143,8 +141,6 @@ function data_process(sensor) {
 	};
 	var wklayout = {
 		title: '一週 sensor 分析圖',
-		width: 500,
-		height: 250,
 		xaxis: {
 			title: '一週 one week',
 		},
