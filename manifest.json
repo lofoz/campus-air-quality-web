@@ -1,0 +1,13 @@
+{
+　"short_name": "NCKU air",
+　"name": "NCKU air",
+　"icons": [{
+　　"src":"./img/icon-b.png",
+　　"sizes": "192×192",
+　　"type": "image/png"
+　　}],
+　"start_url": "https://nckuairpollution.csie.ncku.edu.tw/",
+　"background_color": "#000",
+　"theme_color": "#536878",
+　"display": "standalone"
+}
