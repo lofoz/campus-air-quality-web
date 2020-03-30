@@ -6,7 +6,7 @@
 		"sizes": "192×192",
 		"type": "image/svg"
 	}],
-	"start_url": "/index.html",
+	"start_url": "https://lofoz.github.io/campus-air-quality-web/",
 	"background_color": "#000",
 	"theme_color": "#536878",
 	"display": "standalone"
