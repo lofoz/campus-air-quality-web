@@ -1,4 +1,4 @@
-$(".data_analyze").click(function() {
+$(document).ready(function() {
 	analyze();
 })
 $(".das0").click(function() {
@@ -152,7 +152,9 @@ function data_process(sensor) {
 	};
 	// 1 hum   2 pm10   3 pm100   4 pm25   5 temp
 	var hrcom = [hrtrace4, hrtrace5];
-	var config = {responsive: true}
+	var config = {
+		responsive: true
+	}
 	Plotly.newPlot('graph1' + sensor, hrcom, hrlayout, config);
 
 	var wkcom = [wktrace4, wktrace5]
