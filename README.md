@@ -14,7 +14,7 @@
 
 ## 簡介
 
-> 🌐 Web-site is Here: https://nckuairpollution.nctu.me
+> 🌐 Web-site is Here: http://lofoz.github.io/campus-air-quality-web
 
 > 📈 於成功大學校園內放置空氣盒子，收集資料，並分析空氣品質數據！
 
