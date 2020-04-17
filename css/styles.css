@@ -24,6 +24,11 @@ body {
 	font-size: 14px;
 }
 
+.navbar-toggler {
+	border: none;
+	padding: 0;
+}
+
 @media (max-width: 992px) {
 	.pmtable {
 		margin-top: 0.5rem;
