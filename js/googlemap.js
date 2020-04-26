@@ -53,8 +53,8 @@ var position = [{
 var info_config = [
 	'<h3>生命科學系館</h3>' +
 	'<img src="https://lh5.googleusercontent.com/p/AF1QipMDP24pxMChUca398nsNrwKNzHjCYtxBrWd7zpT=w408-h306-k-no" width = "200px">',
-	'<h3>MRI中心</h3>' +
-	'<img src="http://fmri.ncku.edu.tw/tw/themes/default/images/about2_front.png" width = "200px">',
+	'<h3>MRI中心</h3>',
+	// '<img src="http://fmri.ncku.edu.tw/tw/themes/default/images/about2_front.png" width = "200px">',
 	'<h3>勝利一舍</h3>' +
 	'<img src="https://follaw.tw/wp-content/uploads/2019/11/%E5%8B%9D%E5%88%A9%E4%B8%80%E8%88%8D.jpg" width = "200px">',
 	'<h3>學生活動中心(一)</h3>' +
