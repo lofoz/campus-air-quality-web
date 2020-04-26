@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant-TW">
 	<head>
 		<!-- Required meta tags -->
@@ -11,16 +11,17 @@
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
 
-		<title>成大空氣品質資料平台</title>
-
+		<title>成大空汙資料平台</title>
+		<link rel="icon" href="./img/192x192.png" type="image/x-icon" />
+		<link rel="shortcut icon" href="./img/192x192.png" type="image/x-icon" />
 	</head>
 	<body>
 		<!-- 標頭 -->
 		<nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #00cc99;">
 			<div class="container">
-				<a class="navbar-brand" href="#" style="font-size: 24px;">
+				<a class="navbar-brand" onclick="javascript:location.href='data_analyze.html';" href="#" style="font-size: 24px;">
 					<img class="mr-2" src="./img/ncku-logo-b.png" height="36" class="d-inline-block align-top" alt="">
-					空氣品質資料平台
+					空汙資料平台
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 				 aria-expanded="false" aria-label="Toggle navigation">
@@ -36,10 +37,12 @@
 							 style="font-size: 18px;">地圖</a>
 						</li>
 						<li class="nav-item data_analyze">
-							<a class="nav-link bg-transparent active" data-toggle="pill" href="#data_analyze" style="font-size: 18px;">數據分析</a>
+							<a class="nav-link bg-transparent active" data-toggle="pill" onclick="javascript:location.href='data_analyze.html';"
+							 href="#data_analyze" style="font-size: 18px;">數據分析</a>
 						</li>
 						<li class="nav-item sport_page">
-							<a class="nav-link bg-transparent" data-toggle="pill" href="#" style="font-size: 18px;">運動路徑</a>
+							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='direction.html';" href="#direction"
+							 style="font-size: 18px;">運動路徑</a>
 						</li>
 					</ul>
 				</div>

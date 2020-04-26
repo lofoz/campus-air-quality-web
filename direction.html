@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
+
+		<!-- load map -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		 crossorigin="anonymous"></script>
+		<script src="./js/direction.js" type="text/javascript" charset="utf-8"></script>
+		<!-- local -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqkHDM-JrgtN2FXNVhvLoHNm51SXMU4dc&callback=initMap"></script>
+		<!-- online -->
+		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script> -->
+
+		<title>成大空汙資料平台</title>
+		<link rel="icon" href="./img/192x192.png" type="image/x-icon" />
+		<link rel="shortcut icon" href="./img/192x192.png" type="image/x-icon" />
+	</head>
+	<body>
+		<!-- 標頭 -->
+		<nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #00cc99;">
+			<div class="container">
+				<a class="navbar-brand" onclick="javascript:location.href='direction.html';" href="#" style="font-size: 24px;">
+					<img class="mr-2" src="./img/ncku-logo-b.png" height="36" class="d-inline-block align-top" alt="">
+					空汙資料平台
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+				 aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+					<ul class="navbar-nav nav nav-pills">
+						<li class="nav-item info">
+							<a class="nav-link bg-transparent" data-toggle="pill" href="#" style="font-size: 18px;">簡介 <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item map_page">
+							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='index.html';"
+							 href="#map_page" style="font-size: 18px;">地圖</a>
+						</li>
+						<li class="nav-item data_analyze">
+							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='data_analyze.html';"
+							 href="#data_analyze" style="font-size: 18px;">數據分析</a>
+						</li>
+						<li class="nav-item sport_page">
+							<a class="nav-link bg-transparent active" data-toggle="pill" onclick="javascript:location.href='direction.html';"
+							 href="#direction" style="font-size: 18px;">運動路徑</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<div class="container mt-4">
+			<!-- 簡介 主頁面 -->
+			<!-- <div id="info" class="tab-pane fade" role="tabpanel" aria-labelledby="info-tab">
+
+				</div> -->
+			<!-- 地圖 主頁面 -->
+			<!-- <div id="map_page"></div> -->
+			<!-- 運動路徑 主頁面 -->
+			<div class="row">
+				<div class="col">
+					<div id="floating-panel">
+						<b>校區: </b>
+						<select id="start">
+							<option value="0">請選擇校區</option>
+							<option value="KF">光復校區</option>
+							<option value="CK">成功校區</option>
+							<option value="TC">自強校區</option>
+							<option value="SL">勝利校區</option>
+							<option value="CY">敬業校區</option>
+							<option value="CH">成杏校區</option>
+							<option value="LH">力行校區</option>
+						</select>
+						<b>目的地: </b>
+						<select id="end">
+							<option value="0">請選擇目的地</option>
+						</select>
+					</div>
+					<div id="map" class="embed-responsive embed-responsive-16by9"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		 crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		 crossorigin="anonymous"></script>
+	</body>
+</html>

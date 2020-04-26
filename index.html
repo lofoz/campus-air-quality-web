@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant-TW">
 	<head>
 		<!-- Required meta tags -->
@@ -10,24 +10,26 @@
 		 crossorigin="anonymous">
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css" />
+		<link rel="manifest" href="manifest.json">
 
 		<!-- load map -->
 		<script src="./js/googlemap.js" type="text/javascript" charset="utf-8"></script>
 		<!-- local -->
-		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqkHDM-JrgtN2FXNVhvLoHNm51SXMU4dc&callback=initMap"></script> -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqkHDM-JrgtN2FXNVhvLoHNm51SXMU4dc&callback=initMap"></script>
 		<!-- online -->
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script>
+		<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEnj6nbVUv1jbacZTQIVbtcHvOlc7_fDM&callback=initMap"></script> -->
 
-		<title>成大空氣品質資料平台</title>
-
+		<title>成大空汙資料平台</title>
+		<link rel="icon" href="./img/192x192.png" type="image/x-icon" />
+		<link rel="shortcut icon" href="./img/192x192.png" type="image/x-icon" />
 	</head>
 	<body>
 		<!-- 標頭 -->
 		<nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #00cc99;">
 			<div class="container">
-				<a class="navbar-brand" href="#" style="font-size: 24px;">
+				<a class="navbar-brand" onclick="javascript:location.href='index.html';" href="#" style="font-size: 24px;">
 					<img class="mr-2" src="./img/ncku-logo-b.png" height="36" class="d-inline-block align-top" alt="">
-					空氣品質資料平台
+					空汙資料平台
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
 				 aria-expanded="false" aria-label="Toggle navigation">
@@ -42,10 +44,12 @@
 							<a class="nav-link bg-transparent active" data-toggle="pill" href="#map_page" style="font-size: 18px;">地圖</a>
 						</li>
 						<li class="nav-item data_analyze">
-							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='data_analyze.html';" href="#data_analyze" style="font-size: 18px;">數據分析</a>
+							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='data_analyze.html';"
+							 href="#data_analyze" style="font-size: 18px;">數據分析</a>
 						</li>
 						<li class="nav-item sport_page">
-							<a class="nav-link bg-transparent" data-toggle="pill" href="#" style="font-size: 18px;">運動路徑</a>
+							<a class="nav-link bg-transparent" data-toggle="pill" onclick="javascript:location.href='direction.html';" href="#direction"
+							 style="font-size: 18px;">運動路徑</a>
 						</li>
 					</ul>
 				</div>
@@ -54,100 +58,100 @@
 
 
 		<div class="container mt-4">
-				<!-- 簡介 主頁面 -->
-				<!-- <div id="info" class="tab-pane fade" role="tabpanel" aria-labelledby="info-tab">
+			<!-- 簡介 主頁面 -->
+			<!-- <div id="info" class="tab-pane fade" role="tabpanel" aria-labelledby="info-tab">
 
 				</div> -->
-				<!-- 地圖 主頁面 -->
-				<div id="map_page">
-					<!-- 麵包屑 -->
-					<div class="row">
-						<div class="col-md-8 col-sm-6">
-							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb pmalert">
-									<li class="breadcrumb-item text-pmalert">Sensor Box 位置(0~7)：<br>生科系、MRI中心、勝一舍、學生會辦、建築系、資訊系、計網中心、儀器大樓</li>
-								</ol>
-							</nav>
-						</div>
-						<div class="col-md-4 col-sm-6">
-							<nav aria-label="breadcrumb" onclick="setMap_my()">
-								<ol class="breadcrumb pmlocate">
-									<li class="breadcrumb-item text-pmlocate" id="my_pm">目前位置 最近Sensor：2<br>PM2.5：17.5 μg/m<sup>3</sup></li>
-								</ol>
-							</nav>
-						</div>
+			<!-- 地圖 主頁面 -->
+			<div id="map_page">
+				<!-- 麵包屑 -->
+				<div class="row">
+					<div class="col-md-8 col-sm-6">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb pmalert">
+								<li class="breadcrumb-item text-pmalert">Sensor Box 位置(0~7)：<br>生科系、MRI中心、勝一舍、學生會辦、建築系、資訊系、計網中心、儀器大樓</li>
+							</ol>
+						</nav>
 					</div>
-
-					<!-- 地圖和PM表格 -->
-					<div class="row">
-						<div class="col-lg-8">
-							<div id="map" class="embed-responsive embed-responsive-16by9"></div>
-						</div>
-						<div class="col-lg-4 col-md-4 pmtable">
-							<h3><b>Sensor</b></h3>
-							<div class="table-responsive">
-								<table class="table table-sm table-bordered table-hover">
-									<thead>
-										<tr>
-											<th scope="col">位置</th>
-											<th scope="col">PM2.5(μg/m<sup>3</sup>)</th>
-											<th scope="col">溫度(°C)</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="table-muted" onclick="setMap(0)">
-											<th scope="row">0</th>
-											<td><span id="0pm"></span></td>
-											<td><span id="0temp"></span></td>
-										</tr>
-										<tr class="table-primary" onclick="setMap(1)">
-											<th scope="row">1</th>
-											<td><span id="1pm"></span></td>
-											<td><span id="1temp"></span></td>
-										</tr>
-										<tr class="table-success" onclick="setMap(2)">
-											<th scope="row">2</th>
-											<td><span id="2pm"></span></td>
-											<td><span id="2temp"></span></td>
-										</tr>
-										<tr class="table-info" onclick="setMap(3)">
-											<th scope="row">3</th>
-											<td><span id="3pm"></span></td>
-											<td><span id="3temp"></span></td>
-										</tr>
-										<tr class="table-warning" onclick="setMap(4)">
-											<th scope="row">4</th>
-											<td><span id="4pm"></span></td>
-											<td><span id="4temp"></span></td>
-										</tr>
-										<tr class="table-danger" onclick="setMap(5)">
-											<th scope="row">5</th>
-											<td><span id="5pm"></span></td>
-											<td><span id="5temp"></span></td>
-										</tr>
-										<tr class="table-secondary" onclick="setMap(6)">
-											<th scope="row">6</th>
-											<td><span id="6pm"></span></td>
-											<td><span id="6temp"></span></td>
-										</tr>
-										<tr class="table-light" onclick="setMap(7)">
-											<th scope="row">7</th>
-											<td><span id="7pm"></span></td>
-											<td><span id="7temp"></span></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<!-- 色溫圖 -->
-						<div class="col-md-8 mt-2">
-							<h3 class="pl-4"><b>色溫圖</b></h3>
-							<img class="d-block w-100" src="https://nckuairpollution.csie.ncku.edu.tw:6800/campus/picture">
-						</div>
+					<div class="col-md-4 col-sm-6">
+						<nav aria-label="breadcrumb" onclick="setMap_my()">
+							<ol class="breadcrumb pmlocate">
+								<li class="breadcrumb-item text-pmlocate" id="my_pm">目前位置 最近Sensor：2<br>PM2.5：17.5 μg/m<sup>3</sup></li>
+							</ol>
+						</nav>
 					</div>
 				</div>
-				<!-- 運動路徑 主頁面 -->
-				<!-- <div id="sport_page" class="tab-pane fade" role="tabpanel" aria-labelledby="sport_page-tab">
+
+				<!-- 地圖和PM表格 -->
+				<div class="row">
+					<div class="col-lg-8">
+						<div id="map" class="embed-responsive embed-responsive-16by9"></div>
+					</div>
+					<div class="col-lg-4 col-md-4 pmtable">
+						<h3><b>Sensor</b></h3>
+						<div class="table-responsive">
+							<table class="table table-sm table-bordered table-hover">
+								<thead>
+									<tr>
+										<th scope="col">位置</th>
+										<th scope="col">PM2.5(μg/m<sup>3</sup>)</th>
+										<th scope="col">溫度(°C)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-muted" onclick="setMap(0)">
+										<th scope="row">0</th>
+										<td><span id="0pm"></span></td>
+										<td><span id="0temp"></span></td>
+									</tr>
+									<tr class="table-primary" onclick="setMap(1)">
+										<th scope="row">1</th>
+										<td><span id="1pm"></span></td>
+										<td><span id="1temp"></span></td>
+									</tr>
+									<tr class="table-success" onclick="setMap(2)">
+										<th scope="row">2</th>
+										<td><span id="2pm"></span></td>
+										<td><span id="2temp"></span></td>
+									</tr>
+									<tr class="table-info" onclick="setMap(3)">
+										<th scope="row">3</th>
+										<td><span id="3pm"></span></td>
+										<td><span id="3temp"></span></td>
+									</tr>
+									<tr class="table-warning" onclick="setMap(4)">
+										<th scope="row">4</th>
+										<td><span id="4pm"></span></td>
+										<td><span id="4temp"></span></td>
+									</tr>
+									<tr class="table-danger" onclick="setMap(5)">
+										<th scope="row">5</th>
+										<td><span id="5pm"></span></td>
+										<td><span id="5temp"></span></td>
+									</tr>
+									<tr class="table-secondary" onclick="setMap(6)">
+										<th scope="row">6</th>
+										<td><span id="6pm"></span></td>
+										<td><span id="6temp"></span></td>
+									</tr>
+									<tr class="table-light" onclick="setMap(7)">
+										<th scope="row">7</th>
+										<td><span id="7pm"></span></td>
+										<td><span id="7temp"></span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- 色溫圖 -->
+					<div class="col-md-8 mt-2">
+						<h3 class="pl-4"><b>色溫圖</b></h3>
+						<img class="d-block w-100" src="https://nckuairpollution.csie.ncku.edu.tw:6800/campus/picture">
+					</div>
+				</div>
+			</div>
+			<!-- 運動路徑 主頁面 -->
+			<!-- <div id="sport_page" class="tab-pane fade" role="tabpanel" aria-labelledby="sport_page-tab">
 
 				</div> -->
 		</div>
@@ -161,6 +165,13 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		 crossorigin="anonymous"></script>
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('./js/sw.js')
+					.then(reg => console.log('完成 SW 設定!', reg))
+					.catch(err => console.log('Error!', err));
+			}
+		</script>
 		<script src="js/loaddata.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
