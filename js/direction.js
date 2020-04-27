@@ -198,8 +198,8 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer, waypAry
 
 	directionsService.route({
 		origin: {
-			lat: 22.999901,
-			lng: 120.153379
+			lat: my_lat,
+			lng: my_lng
 		},
 		destination: {
 			lat: positions[document.getElementById('start').value]['lat'][document.getElementById('end').value - 1],
