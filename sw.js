@@ -1,14 +1,13 @@
-// install
-self.addEventListener('install', event => {
-	console.log('installingâ€¦');
-});
+// ÒıÓÃworkbox build
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
-// activate
-self.addEventListener('activate', event => {
-	console.log('now ready to handle fetches!');
-});
-
-// fetch
-self.addEventListener('fetch', event => {
-	console.log('now fetch!');
-});
+// Ê¹ÓÃprecache¹¦ÄÜ£¬ÔÚofflineÏÂÒ²¿ÉÒÔˆÌĞĞ
+// Òª´æßMcache storageÑeµÄ™n°¸Çå†Î
+var cacheFiles = [
+  "./",
+  {
+    url: './index.html',
+    revision: '00000001' // ¼Órevision£¬°æ±¾¸ÄÁËÒÔáá£¬sw.js ÔÚ application ÉÏ•ş¸üĞÂ
+  }
+];
+workbox.precaching.precacheAndRoute(cacheFiles);
