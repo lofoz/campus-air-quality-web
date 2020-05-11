@@ -4,16 +4,16 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 // 使用precache功能，在offline下也可以執行
 // 要存進cache storage裡的檔案清單
 var cacheFiles = [
-	"/",
-	"/index.html",
-	"/data_analyze.html",
-	"/direction.html",
-	"/css/styles.css",
-	"/js/googlemap.js",
-	"/js/loaddata.js",
-	"/js/data_analyze.js",
-	"/js/direction.js",
-	"/img/ncku-logo-b.png",
+	"/campus-air-quality-web/",
+	"/campus-air-quality-web/index.html",
+	"/campus-air-quality-web/data_analyze.html",
+	"/campus-air-quality-web/direction.html",
+	"/campus-air-quality-web/css/styles.css",
+	"/campus-air-quality-web/js/googlemap.js",
+	"/campus-air-quality-web/js/loaddata.js",
+	"/campus-air-quality-web/js/data_analyze.js",
+	"/campus-air-quality-web/js/direction.js",
+	"/campus-air-quality-web/img/ncku-logo-b.png",
 	{
 		url: './index.html',
 		revision: '00000001' // 加revision，版本改了以後，sw.js 在 application 上會更新
