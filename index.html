@@ -165,10 +165,148 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		 crossorigin="anonymous"></script>
 		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-messaging.js"></script>
 		<script>
+			// Your web app's Firebase configuration
+			var firebaseConfig = {
+				apiKey: "AIzaSyBBnECtCvqhG3wmZpORfS3VJZlgjK1KLaU",
+				authDomain: "test-6d390.firebaseapp.com",
+				databaseURL: "https://test-6d390.firebaseio.com",
+				projectId: "test-6d390",
+				storageBucket: "test-6d390.appspot.com",
+				messagingSenderId: "1072871991195"
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+			var database = firebase.database();
+			var messaging = firebase.messaging();
+			const tokenDivId = 'token_div';
+			const permissionDivId = 'permission_div';
+			messaging.usePublicVapidKey(
+				'BOcVtHmZ6xJMkhgKmtgmsGcr8zZVOfQJEfiynuGlVGqAwFFERoFFoFZFAnI7j3o5fFHhnahnOVdAJifO_EnBFaQ');
+
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register('sw.js')
-					.then(reg => console.log('完成 SW 設定!', reg))
+					.then(reg => {
+						// firebase methods，用同一支sw.js
+						messaging.useServiceWorker(reg);
+
+						messaging.onTokenRefresh(() => {
+							messaging.getToken().then((refreshedToken) => {
+								console.log('Token refreshed.');
+								// Indicate that the new Instance ID token has not yet been sent to the
+								// app server.
+								setTokenSentToServer(false);
+								// Send Instance ID token to app server.
+								sendTokenToServer(refreshedToken);
+								// [START_EXCLUDE]
+								// Display new Instance ID token and clear UI of all previous messages.
+								resetUI();
+								// [END_EXCLUDE]
+							}).catch((err) => {
+								console.log('Unable to retrieve refreshed token ', err);
+							});
+						});
+						// [END refresh_token]
+
+						// [START receive_message]
+						// Handle incoming messages. Called when:
+						// - a message is received while the app has focus
+						// - the user clicks on an app notification created by a service worker
+						//   `messaging.setBackgroundMessageHandler` handler.
+
+						messaging.onMessage((payload) => {
+							console.log('Message received. ', payload);
+							var data = payload.notification;
+							var title = data.title;
+							var options = {
+								body: data.body
+							};
+							var url = data.click_action;
+							var notification = new Notification(title, options);
+
+							// 點擊推播後要連去哪
+							notification.addEventListener('click', function() {
+								e.preventDefault();
+								location.href = url;
+							});
+							// [START_EXCLUDE]
+							// Update the UI to include the received message.
+							// [END_EXCLUDE]
+						});
+						// [END receive_message]
+
+						function resetUI() {
+							// [START get_token]
+							// Get Instance ID token. Initially this makes a network call, once retrieved
+							// subsequent calls to getToken will return from cache.
+							messaging.getToken().then((currentToken) => {
+								if (currentToken) {
+									console.log(currentToken);
+									sendTokenToServer(currentToken);
+								} else {
+									// Show permission request.
+									console.log('No Instance ID token available. Request permission to generate one.');
+									// Show permission UI.
+									setTokenSentToServer(false);
+								}
+							}).catch((err) => {
+								console.log('An error occurred while retrieving token. ', err);
+								setTokenSentToServer(false);
+							});
+							// [END get_token]
+						}
+
+						// Send the Instance ID token your application server, so that it can:
+						// - send messages back to this app
+						// - subscribe/unsubscribe the token from topics
+						function sendTokenToServer(currentToken) {
+							if (!isTokenSentToServer()) {
+								console.log('Sending token to server...');
+								// TODO(developer): Send the current token to your server.
+								var id = currentToken.split(':')[0];
+								firebase.database().ref('pushUsers/' + id).set({
+									'token': currentToken
+								});
+								setTokenSentToServer(true);
+							} else {
+								console.log('Token already sent to server so won\'t send it again ' +
+									'unless it changes');
+							}
+
+						}
+
+						function isTokenSentToServer() {
+							return window.localStorage.getItem('sentToServer') === '1';
+						}
+
+						function setTokenSentToServer(sent) {
+							window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+						}
+
+						function requestPermission() {
+							console.log('Requesting permission...');
+							// [START request_permission]
+							Notification.requestPermission().then((permission) => {
+								if (permission === 'granted') {
+									console.log('Notification permission granted.');
+									// TODO(developer): Retrieve an Instance ID token for use with FCM.
+									// [START_EXCLUDE]
+									// In many cases once an app has been granted notification permission,
+									// it should update its UI reflecting this.
+									resetUI();
+									// [END_EXCLUDE]
+								} else {
+									console.log('Unable to get permission to notify.');
+								}
+							});
+							// [END request_permission]
+						}
+
+						resetUI();
+					})
 					.catch(err => console.log('Error!', err));
 			}
 		</script>
