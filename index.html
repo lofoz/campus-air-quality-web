@@ -230,7 +230,7 @@
 							var notification = new Notification(title, options);
 
 							// 點擊推播後要連去哪
-							notification.addEventListener('click', function() {
+							notification.addEventListener('click', function(e) {
 								e.preventDefault();
 								location.href = url;
 							});
