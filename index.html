@@ -213,18 +213,17 @@
 								console.log("sw statechange : ", e.target.state);
 								if (e.target.state == "activated") {
 									// use pushManger for subscribing here.
+									// firebase methods，用同一支sw.js
+									messaging.useServiceWorker(reg);
 									messaging.requestPermission().then(function() {
 										resetUI();
 									}).catch(function(err) {
 										console.log('使用者未允許通知', err);
 									});
 									console.log("Just now activated. now we can subscribe for push notification")
-									subscribeForPushNotification(reg);
 								}
 							});
 						}
-						// firebase methods，用同一支sw.js
-						messaging.useServiceWorker(reg);
 
 						messaging.onTokenRefresh(() => {
 							messaging.getToken().then((refreshedToken) => {
