@@ -207,7 +207,12 @@
 							console.log("sw current state", serviceWorker.state);
 							if (serviceWorker.state == "activated") {
 								//If push subscription wasnt done yet have to do here
-								resetUI();
+								messaging.useServiceWorker(reg);
+								messaging.requestPermission().then(function() {
+									resetUI();
+								}).catch(function(err) {
+									console.log('使用者未允許通知', err);
+								});
 								console.log("sw already activated - Do watever needed here");
 							}
 							serviceWorker.addEventListener("statechange", function(e) {
