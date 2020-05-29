@@ -37,10 +37,15 @@ function get_campus_data(i) {
 			var pm_string = String(i) + "pm";
 			var temp_string = String(i) + "temp";
 			data = {};
-			data['pm25'] = JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
-			data['temp'] = JSON.stringify(xhr.response["avg_temp"]["temp"]);
-			document.getElementById(pm_string).innerHTML = data.pm25;
-			document.getElementById(temp_string).innerHTML = data.temp;
+			if (xhr.response["avg_pm25"]["pm25"] != 0) {
+				data['pm25'] = JSON.stringify(xhr.response["avg_pm25"]["pm25"]);
+				data['temp'] = JSON.stringify(xhr.response["avg_temp"]["temp"]);
+				document.getElementById(pm_string).innerHTML = data.pm25;
+				document.getElementById(temp_string).innerHTML = data.temp;
+			} else {
+				document.getElementById(pm_string).innerHTML = "Out of Service！";
+				document.getElementById(temp_string).innerHTML = "Out of Service！";
+			}
 		}
 	};
 	xhr.open('GET', url);
@@ -124,8 +129,12 @@ function get_my_campus_data(i) {
 		if (xhr.readyState === XMLHttpRequest.DONE) {
 			//document.write(JSON.stringify(xhr.response));
 			//document.getElementById("pm").innerHTML=JSON.stringify(xhr.response[0]);
-			meg = meg + "<br>PM2.5：" + JSON.stringify(xhr.response["avg_pm25"]["pm25"]) + " μg/m<sup>3</sup>";
-			document.getElementById("my_pm").innerHTML = meg;
+			if (xhr.response["avg_pm25"]["pm25"] != 0) {
+				meg = meg + "<br>PM2.5：" + JSON.stringify(xhr.response["avg_pm25"]["pm25"]) + " μg/m<sup>3</sup>";
+				document.getElementById("my_pm").innerHTML = meg;
+			} else {
+				document.getElementById("my_pm").innerHTML = "Out of Service！";
+			}
 		}
 	};
 	xhr.open('GET', url);
