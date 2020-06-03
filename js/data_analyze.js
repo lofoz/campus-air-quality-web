@@ -95,7 +95,7 @@ function specific(sensor, analyze_data) {
 			title: '時間 Time',
 		},
 		yaxis: {
-			title: 'μg/m<sup>3</sup>',
+			title: 'PM2.5 (μg/m<sup>3</sup>)',
 		},
 		width: 520
 	};
@@ -176,10 +176,10 @@ function prob(sensor, analyze_data) {
 			family: 'Microsoft JhengHei, monospace',
 		},
 		xaxis: {
-			title: '時間'
+			title: '時間(小時)'
 		},
 		yaxis: {
-			title: 'pm2.5機率值'
+			title: 'pm2.5 機率值(%)'
 		},
 		width: 520
 	};
