@@ -91,6 +91,9 @@ function addMarker(e) {
 			lng: position[e].lng,
 		},
 		map: map,
+		icon: {
+			url: "https://i.imgur.com/svYAeta.png",
+		},
 		label: position[e].label,
 		title: position[e].title
 	});
