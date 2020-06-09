@@ -40,28 +40,6 @@ var positions = {
 	}
 }
 
-$(function() {
-	var w = $(window).width();
-	var current_mode = screen.orientation;
-
-	// type
-	console.log(current_mode.type)
-
-	// angle
-	console.log(current_mode.angle)
-	if (w < 768) {
-		screen.orientation.lock("landscape-primary")
-			.then(function() {
-				alert('Locked');
-			})
-			.catch(function(error) {
-				alert(error);
-			});
-	} else {
-		screen.orientation.unlock()
-	}
-});
-
 function initMap() {
 	var chicago = new google.maps.LatLng(41.850033, -87.6500523);
 	directionsService = new google.maps.DirectionsService();
